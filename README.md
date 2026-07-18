@@ -12,6 +12,7 @@ An interactive infographic map of Odysseus's 10-year journey from Homer's *The O
 - **Auto-Play Mode**: Sit back and watch the journey unfold
 - **Timeline Navigation**: Jump to any stop via the timeline bar
 - **Rich Content**: Each stop includes period, region, crew statistics, and citations from Homer, Strabo, Ovid, and more
+- **Movie Stills**: Film imagery and captions from the 2026 motion picture
 - **Responsive Design**: Works on desktop and mobile
 
 ## Usage
@@ -39,7 +40,8 @@ odyssey-map/
 
 - [Leaflet.js](https://leafletjs.com/) for interactive mapping
 - CartoDB dark_matter tiles via OpenStreetMap
-- Google Fonts (Cinzel + Cormorant Garamond)
+- Google Fonts (Montserrat)
+- Design inspired by *The Odyssey* (2026) film branding
 
 ## Data
 
