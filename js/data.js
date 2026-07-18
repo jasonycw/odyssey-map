@@ -76,7 +76,7 @@ const journeyStops = [
         description: 'The most famous episode. Polyphemus, the one-eyed son of Poseidon, traps Odysseus and his men in his cave, devouring them two at a time. Odysseus gets the giant drunk, blinds him, and escapes hidden under sheep — but his pride costs him dearly when he shouts his real name as he sails away.',
         detail: 'This is the defining moment of the Odyssey. Odysseus introduces himself as "Nobody" to the Cyclops, executes a brilliant escape — and then ruins it by shouting his true name in victory. Polyphemus prays to his father Poseidon to curse Odysseus, and Poseidon obliges. Every subsequent hardship traces back to this moment of hubris. The episode is traditionally located on the eastern coast of Sicily (Aci Castello/Aci Trezza area), near Mount Etna.',
         movieImg: 'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image_giants.jpg',
-        movieImgCaption: 'Matt Damon as Odysseus faces the Cyclops — Christopher Nolan\'s The Odyssey (2026)',
+        movieImgCaption: 'Matt Damon as Odysseus — Christopher Nolan\'s The Odyssey (2026)',
         period: '~3 days (1 day trapped, 1 night of escape)',
         region: 'Sicily, near Mount Etna (modern Italy)',
         stats: {
