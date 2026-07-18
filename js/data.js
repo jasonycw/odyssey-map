@@ -2,7 +2,7 @@ const journeyStops = [
     {
         id: 'troy',
         name: 'Troy',
-        coords: [39.96, 26.24],
+        coords: [39.957, 26.238],
         book: 'The Iliad / Odyssey Book 9 (backstory)',
         icon: '\u{1F3DB}\uFE0F',
         description: 'After ten years of war, the Greeks triumph through Odysseus\'s cunning Trojan Horse stratagem. He departs with 12 ships and 600 men, eager to return to Ithaca — unknowingly beginning a decade-long ordeal.',
@@ -25,7 +25,7 @@ const journeyStops = [
     {
         id: 'cicones',
         name: 'Cicones (Ismarus)',
-        coords: [40.88, 25.57],
+        coords: [40.874, 25.536],
         book: 'Odyssey Book 9',
         icon: '\u2694\uFE0F',
         description: 'The first stop after Troy. Odysseus sacks the city of Ismarus, but his men linger to feast and drink. The Cicones regroup and counterattack, killing six men from each ship — a costly lesson in discipline.',
@@ -47,7 +47,7 @@ const journeyStops = [
     {
         id: 'lotus',
         name: 'Lotus Eaters',
-        coords: [33.0, 13.0],
+        coords: [33.867, 10.850],
         book: 'Odyssey Book 9',
         icon: '\u{1F338}',
         description: 'A peaceful people whose lotus fruit induces blissful forgetfulness. The men who eat it lose all desire to return home. Odysseus drags them back to the ships by force, tied to their benches.',
@@ -70,11 +70,13 @@ const journeyStops = [
     {
         id: 'cyclops',
         name: 'Cyclops (Polyphemus)',
-        coords: [37.5, 14.0],
+        coords: [37.563, 15.162],
         book: 'Odyssey Book 9',
         icon: '\u{1F441}\uFE0F',
         description: 'The most famous episode. Polyphemus, the one-eyed son of Poseidon, traps Odysseus and his men in his cave, devouring them two at a time. Odysseus gets the giant drunk, blinds him, and escapes hidden under sheep — but his pride costs him dearly when he shouts his real name as he sails away.',
-        detail: 'This is the defining moment of the Odyssey. Odysseus introduces himself as "Nobody" to the Cyclops, executes a brilliant escape — and then ruins it by shouting his true name in victory. Polyphemus prays to his father Poseidon to curse Odysseus, and Poseidon obliges. Every subsequent hardship traces back to this moment of hubris. The episode is located on Sicily, near Mount Etna, in later tradition.',
+        detail: 'This is the defining moment of the Odyssey. Odysseus introduces himself as "Nobody" to the Cyclops, executes a brilliant escape — and then ruins it by shouting his true name in victory. Polyphemus prays to his father Poseidon to curse Odysseus, and Poseidon obliges. Every subsequent hardship traces back to this moment of hubris. The episode is traditionally located on the eastern coast of Sicily (Aci Castello/Aci Trezza area), near Mount Etna.',
+        movieImg: 'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image_giants.jpg',
+        movieImgCaption: 'Matt Damon as Odysseus faces the Cyclops — Christopher Nolan\'s The Odyssey (2026)',
         period: '~3 days (1 day trapped, 1 night of escape)',
         region: 'Sicily, near Mount Etna (modern Italy)',
         stats: {
@@ -94,7 +96,7 @@ const journeyStops = [
     {
         id: 'aeolus',
         name: 'Aeolus (Aeolian Islands)',
-        coords: [38.5, 14.5],
+        coords: [38.467, 14.954],
         book: 'Odyssey Book 10',
         icon: '\u{1F32C}\uFE0F',
         description: 'The wind god Aeolus gives Odysseus a leather bag containing all adverse winds, allowing him to sail straight home. Within sight of Ithaca, his greedy crew opens the bag, thinking it holds treasure. The winds burst out, driving them all the way back to Aeolus — who refuses to help a second time.',
@@ -118,7 +120,7 @@ const journeyStops = [
     {
         id: 'laestrygonians',
         name: 'Laestrygonians',
-        coords: [41.0, 13.0],
+        coords: [41.256, 13.608],
         book: 'Odyssey Book 10',
         icon: '\u{1FAA8}',
         description: 'Giant cannibals who destroy eleven of Odysseus\'s twelve ships. The fleet sails into a protected harbor — a deadly trap. The Laestrygonians hurl massive boulders, smashing the ships and devouring the crews. Only Odysseus\'s ship survives, moored outside the harbor.',
@@ -142,7 +144,7 @@ const journeyStops = [
     {
         id: 'circe',
         name: 'Circe (Aeaea)',
-        coords: [42.0, 11.5],
+        coords: [41.233, 13.100],
         book: 'Odyssey Books 10–12',
         icon: '\u{1F437}',
         description: 'The enchantress Circe turns Odysseus\'s scouting party into pigs. Protected by the herb moly (given by Hermes), Odysseus forces her to restore his men. He remains on her island for a year as her lover, and she becomes his most valuable advisor.',
@@ -168,7 +170,7 @@ const journeyStops = [
     {
         id: 'underworld',
         name: 'The Underworld (Hades)',
-        coords: [37.0, -1.0],
+        coords: [40.840, 14.070],
         book: 'Odyssey Book 11',
         icon: '\u{1F480}',
         description: 'Odysseus travels to the land of the dead to consult the prophet Tiresias. He encounters the shades of his mother, his fallen comrades, and the great heroes of the Trojan War — including Achilles, who says he would rather be a living slave than king of all the dead.',
@@ -192,7 +194,7 @@ const journeyStops = [
     {
         id: 'sirens',
         name: 'The Sirens',
-        coords: [40.5, 14.3],
+        coords: [40.584, 14.443],
         book: 'Odyssey Book 12',
         icon: '\u{1F3B5}',
         description: 'Creatures whose enchanting song promises knowledge of all things — but lures sailors to their deaths on the rocks. Odysseus orders his crew to plug their ears with wax and tie him to the mast. He becomes the only mortal to hear the Sirens\' song and survive.',
@@ -216,7 +218,7 @@ const journeyStops = [
     {
         id: 'scylla',
         name: 'Scylla & Charybdis',
-        coords: [38.2, 15.6],
+        coords: [38.250, 15.717],
         book: 'Odyssey Book 12',
         icon: '\u{1F30A}',
         description: 'A six-headed monster (Scylla) and a whirlpool (Charybdis) flanking a narrow strait. Circe advised Odysseus to steer toward Scylla, losing six men, rather than risk Charybdis destroying the entire ship. Six men are snatched from the deck and devoured alive.',
@@ -242,7 +244,7 @@ const journeyStops = [
     {
         id: 'thrinacia',
         name: 'Thrinacia (Cattle of Helios)',
-        coords: [37.0, 15.0],
+        coords: [37.100, 15.250],
         book: 'Odyssey Book 12',
         icon: '\u{1F402}',
         description: 'The sun god\'s sacred island. Despite being warned by both Tiresias and Circe, Odysseus\'s starving men slaughter and eat Helios\'s cattle while he sleeps. Helios demands vengeance. Zeus destroys their ship with a thunderbolt. Odysseus alone survives, clinging to wreckage.',
@@ -267,7 +269,7 @@ const journeyStops = [
     {
         id: 'calypso',
         name: 'Calypso (Ogygia)',
-        coords: [35.9, 14.5],
+        coords: [36.050, 14.250],
         book: 'Odyssey Books 1, 5',
         icon: '\u{1F3DD}\uFE0F',
         description: 'The nymph Calypso holds Odysseus captive on her island for seven years, offering him immortality and eternal youth if he stays. But Odysseus sits on the shore every day, gazing at the sea, weeping for home. Zeus finally sends Hermes to order his release.',
@@ -294,7 +296,7 @@ const journeyStops = [
     {
         id: 'phaeacia',
         name: 'Phaeacia (Scheria)',
-        coords: [39.6, 19.9],
+        coords: [39.620, 19.920],
         book: 'Odyssey Books 6–8, 13',
         icon: '\u26F5',
         description: 'Shipwrecked and exhausted, Odysseus washes ashore on Scheria, home of the Phaeacians — master seafarers. He is welcomed by Princess Nausicaa and King Alcinous. At a great feast, he reveals his identity and narrates his entire journey (Books 9–12). The Phaeacians carry him home to Ithaca in a magical ship while he sleeps.',
@@ -320,11 +322,21 @@ const journeyStops = [
     {
         id: 'ithaca',
         name: 'Ithaca',
-        coords: [38.4, 20.6],
+        coords: [38.370, 20.720],
         book: 'Odyssey Books 13–24',
         icon: '\u{1F3E0}',
         description: 'Home at last after 20 years. Odysseus arrives in disguise, aided by Athena. With his son Telemachus, he infiltrates his own palace, strings his great bow (which only he can), and slaughters the 108 suitors who have been consuming his wealth and pressing Penelope to remarry.',
         detail: 'Ithaca (Ithaki, Greece) is the destination — and also the real test. The hero who defeated monsters and resisted goddesses must now reclaim his household. The second half of the Odyssey (Books 13–24) is a domestic epic: a father and son fighting for their home. The restoration is violent but necessary. Athena herself intervenes to stop the cycle of revenge.',
+        movieImg: [
+            'https://sm.ign.com/t/ign_me/photo/default/ct-34089-msg-1777970654249_mkhn.1400.jpg',
+            'https://sm.ign.com/t/ign_me/photo/default/ct-43454-1777970654250_msf3.1400.jpg',
+            'https://sm.ign.com/t/ign_me/photo/default/ct-44304-msg-1777970654250_u2x1.1400.jpg'
+        ],
+        movieImgCaption: [
+            'Anne Hathaway as Penelope and Tom Holland as Telemachus in The Odyssey (2026)',
+            'Robert Pattinson as Antinous in The Odyssey (2026)',
+            'John Leguizamo as Eumaeus in The Odyssey (2026)'
+        ],
         period: 'c. 1164 BCE (20 years after departure)',
         region: 'Ithaki, Ionian Islands (modern Greece)',
         stats: {

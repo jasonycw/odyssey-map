@@ -1,12 +1,12 @@
 :root {
-    --bg-color: #0a0e1a;
-    --map-bg: #111827;
-    --accent-gold: #d4a84b;
-    --terracotta: #c15a3d;
+    --bg-color: #0d0d0d;
+    --map-bg: #1a1a1a;
+    --accent-gold: #cc0809;
+    --terracotta: #2f5e8d;
     --med-blue: #3b82f6;
-    --text-primary: #f0e6d3;
-    --text-secondary: #9ca3af;
-    --path-glow: #f59e0b;
+    --text-primary: #ffffff;
+    --text-secondary: #999999;
+    --path-glow: #cc0809;
     --sidebar-width: 400px;
     --header-height: 80px;
     --timeline-height: 100px;
@@ -19,7 +19,7 @@
 }
 
 body {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-primary);
     height: 100vh;
@@ -42,7 +42,7 @@ body::before {
 
 header {
     height: var(--header-height);
-    background: linear-gradient(to bottom, rgba(10, 14, 26, 0.9), transparent);
+    background: linear-gradient(to bottom, rgba(13, 13, 13, 0.9), transparent);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,17 +53,16 @@ header {
 }
 
 h1 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.8rem;
-    color: var(--accent-gold);
+    color: var(--terracotta);
     letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(212, 168, 75, 0.3);
 }
 
 .subtitle {
     font-size: 1rem;
-    color: var(--text-secondary);
-    font-style: italic;
+    color: var(--accent-gold);
+    font-weight: 600;
 }
 
 main {
@@ -82,7 +81,7 @@ main {
 /* Sidebar */
 #sidebar {
     width: var(--sidebar-width);
-    background: rgba(17, 24, 39, 0.95);
+    background: rgba(26, 26, 26, 0.95);
     border-right: 1px solid var(--accent-gold);
     z-index: 1000;
     padding: 30px;
@@ -104,7 +103,7 @@ main {
     height: 44px;
     border-radius: 50%;
     border: 1px solid var(--accent-gold);
-    background: rgba(10, 14, 26, 0.85);
+    background: rgba(13, 13, 13, 0.85);
     color: var(--accent-gold);
     cursor: pointer;
     font-size: 1.2rem;
@@ -125,10 +124,11 @@ main {
 }
 
 .stop-name {
-    font-family: 'Cinzel', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     color: var(--accent-gold);
     margin-bottom: 5px;
+    font-weight: 700;
 }
 
 .stop-book {
@@ -149,7 +149,7 @@ main {
     font-size: 1rem;
     line-height: 1.6;
     color: var(--text-secondary);
-    border-top: 1px solid rgba(156, 163, 175, 0.2);
+    border-top: 1px solid rgba(153, 153, 153, 0.2);
     padding-top: 15px;
 }
 
@@ -162,12 +162,13 @@ main {
     border-left: 2px solid var(--accent-gold);
 }
 .stop-info-section h3 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     color: var(--accent-gold);
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-bottom: 6px;
+    font-weight: 700;
 }
 .stop-info-section .info-label {
     font-size: 0.75rem;
@@ -208,7 +209,7 @@ main {
     font-size: 0.75rem;
     color: var(--text-secondary);
     padding: 2px 0;
-    border-bottom: 1px solid rgba(156, 163, 175, 0.1);
+    border-bottom: 1px solid rgba(153, 153, 153, 0.1);
 }
 .stop-sources li:last-child {
     border-bottom: none;
@@ -281,15 +282,16 @@ main {
     border: 1px solid transparent;
     border-radius: 20px;
     cursor: pointer;
-    font-family: 'Cinzel', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.8rem;
     color: var(--text-secondary);
     transition: all 0.3s ease;
     white-space: nowrap;
+    font-weight: 600;
 }
 
 .timeline-item:hover {
-    background: rgba(212, 168, 75, 0.1);
+    background: rgba(204, 8, 9, 0.1);
     color: var(--text-primary);
 }
 
@@ -297,7 +299,7 @@ main {
     background: var(--accent-gold);
     color: var(--bg-color);
     font-weight: bold;
-    box-shadow: 0 0 15px rgba(212, 168, 75, 0.4);
+    box-shadow: 0 0 15px rgba(204, 8, 9, 0.4);
 }
 
 /* Controls */
@@ -316,7 +318,7 @@ main {
     height: 50px;
     border-radius: 50%;
     border: 1px solid var(--accent-gold);
-    background: rgba(10, 14, 26, 0.8);
+    background: rgba(13, 13, 13, 0.8);
     color: var(--accent-gold);
     cursor: pointer;
     display: flex;
@@ -345,57 +347,97 @@ main {
 }
 
 @keyframes pulse-btn {
-    0% { box-shadow: 0 0 0 0 rgba(193, 90, 61, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(193, 90, 61, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(193, 90, 61, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(47, 94, 141, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(47, 94, 141, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(47, 94, 141, 0); }
 }
 
 #progress-text {
     position: absolute;
     top: -30px;
     right: 20px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.8rem;
     color: var(--accent-gold);
+    font-weight: 600;
 }
 
-/* Custom Marker Styles */
+/* Custom Marker Styles — Pin-shaped with clear anchor point */
 .marker-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.marker-circle {
+.marker-pin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
+}
+
+.marker-emoji {
     width: 32px;
     height: 32px;
     background: var(--accent-gold);
-    border: 2px solid var(--text-primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    z-index: 2;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    font-size: 15px;
+    line-height: 1;
+}
+
+.marker-point {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 10px solid var(--accent-gold);
 }
 
 .marker-pulse {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 32px;
-    height: 32px;
+    left: 50%;
+    bottom: 0;
+    width: 16px;
+    height: 16px;
+    transform: translate(-50%, 50%);
     background: var(--accent-gold);
     border-radius: 50%;
     z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.marker-pulse.active {
     animation: marker-pulse-anim 2s infinite;
 }
 
 @keyframes marker-pulse-anim {
-    0% { transform: scale(1); opacity: 0.6; }
-    100% { transform: scale(2.5); opacity: 0; }
+    0% { transform: translate(-50%, 50%) scale(1); opacity: 0.6; }
+    100% { transform: translate(-50%, 50%) scale(3.5); opacity: 0; }
+}
+
+/* Movie Still */
+#sidebar-still {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+#still-img {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid rgba(204, 8, 9, 0.3);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+#still-caption {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: center;
 }
 
 /* Footer */
@@ -406,7 +448,7 @@ footer {
     color: var(--text-secondary);
     text-align: center;
     z-index: 1000;
-    border-top: 1px solid rgba(212, 168, 75, 0.1);
+    border-top: 1px solid rgba(204, 8, 9, 0.1);
 }
 
 /* Sidebar collapsed state */
@@ -472,7 +514,7 @@ footer {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     z-index: 2000;
-    background: rgba(10, 14, 26, 0.92);
+    background: rgba(13, 13, 13, 0.95);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -491,18 +533,18 @@ footer {
     text-align: center;
 }
 .intro-content h2 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
     font-size: 2.5rem;
-    color: var(--accent-gold);
+    color: var(--terracotta);
     margin-bottom: 10px;
     letter-spacing: 3px;
-    text-shadow: 0 0 20px rgba(212, 168, 75, 0.3);
 }
 .intro-content .intro-sub {
     font-size: 1.3rem;
-    color: var(--terracotta);
-    font-style: italic;
+    color: var(--accent-gold);
     margin-bottom: 25px;
+    font-weight: 600;
 }
 .intro-content p {
     font-size: 1.1rem;
@@ -511,7 +553,7 @@ footer {
     margin-bottom: 30px;
 }
 .intro-btn {
-    font-family: 'Cinzel', serif;
+    font-family: 'Montserrat', sans-serif;
     background: transparent;
     border: 2px solid var(--accent-gold);
     color: var(--accent-gold);
@@ -521,6 +563,7 @@ footer {
     letter-spacing: 2px;
     text-transform: uppercase;
     transition: all 0.3s ease;
+    font-weight: 600;
 }
 .intro-btn:hover {
     background: var(--accent-gold);
@@ -564,7 +607,7 @@ footer {
     box-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
 }
 .leaflet-bar a {
-    background-color: rgba(17, 24, 39, 0.8) !important;
+    background-color: rgba(26, 26, 26, 0.8) !important;
     color: var(--accent-gold) !important;
-    border-bottom: 1px solid rgba(212, 168, 75, 0.2) !important;
+    border-bottom: 1px solid rgba(204, 8, 9, 0.2) !important;
 }

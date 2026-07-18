@@ -29,6 +29,9 @@ const sidebarStatsSection = document.getElementById('sidebar-stats-section');
 const sidebarStats = document.getElementById('sidebar-stats');
 const sidebarSourcesSection = document.getElementById('sidebar-sources-section');
 const sidebarSources = document.getElementById('sidebar-sources');
+const sidebarStillSection = document.getElementById('sidebar-still-section');
+const stillImg = document.getElementById('still-img');
+const stillCaption = document.getElementById('still-caption');
 const timelineScroll = document.getElementById('timeline-scroll');
 const progressFill = document.getElementById('progress-fill');
 const progressText = document.getElementById('progress-text');
@@ -36,16 +39,19 @@ const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const autoplayBtn = document.getElementById('autoplay-btn');
 
-// Custom Marker Function
+// Custom Marker Function — Pin-shaped with clear anchor point
 function createCustomMarker(stop, index) {
     const icon = L.divIcon({
         className: 'marker-container',
         html: [
-            '<div class="marker-pulse" id="pulse-' + index + '"></div>',
-            '<div class="marker-circle">' + stop.icon + '</div>'
+            '<div class="marker-pin">',
+                '<div class="marker-emoji">' + stop.icon + '</div>',
+                '<div class="marker-point"></div>',
+            '</div>',
+            '<div class="marker-pulse" id="pulse-' + index + '"></div>'
         ].join(''),
-        iconSize: [32, 32],
-        iconAnchor: [16, 16]
+        iconSize: [32, 42],
+        iconAnchor: [16, 42]
     });
     return L.marker(stop.coords, { icon: icon });
 }
@@ -71,7 +77,7 @@ function init() {
     // Create Path (empty initially, animated below)
     var latlngs = journeyStops.map(function (s) { return s.coords; });
     pathLine = L.polyline([], {
-        color: '#d4a84b',
+        color: '#cc0809',
         weight: 4,
         opacity: 0.7,
         dashArray: '10, 10',
@@ -128,6 +134,19 @@ function goToStop(index) {
     sidebarDesc.innerText = stop.description;
     sidebarDetail.innerText = stop.detail;
 
+    // Update Movie Still
+    if (stop.movieImg) {
+        var imgs = Array.isArray(stop.movieImg) ? stop.movieImg : [stop.movieImg];
+        var caps = Array.isArray(stop.movieImgCaption) ? stop.movieImgCaption : [stop.movieImgCaption || ''];
+        stillImg.src = imgs[0];
+        stillCaption.textContent = caps[0] || '';
+        sidebarStillSection.style.display = 'block';
+    } else {
+        stillImg.src = '';
+        stillCaption.textContent = '';
+        sidebarStillSection.style.display = 'none';
+    }
+
     // Update Stats
     if (stop.stats) {
         sidebarStats.innerHTML = '';
@@ -177,7 +196,7 @@ function goToStop(index) {
     markers.forEach(function (m, idx) {
         var pulse = document.getElementById('pulse-' + idx);
         if (pulse) {
-            pulse.style.display = (idx === index) ? 'block' : 'none';
+            pulse.classList.toggle('active', idx === index);
         }
     });
 
