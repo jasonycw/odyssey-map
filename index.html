@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odyssey Map - Interactive Journey of Odysseus</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        :root {
+            --bg-color: #0a0e1a;
+            --map-bg: #111827;
+            --accent-gold: #d4a84b;
+            --terracotta: #c15a3d;
+            --med-blue: #3b82f6;
+            --text-primary: #f0e6d3;
+            --text-secondary: #9ca3af;
+            --path-glow: #f59e0b;
+            --sidebar-width: 400px;
+            --header-height: 80px;
+            --timeline-height: 100px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        header {
+            height: var(--header-height);
+            background: linear-gradient(to bottom, rgba(10, 14, 26, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(212, 168, 75, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #map {
+            flex: 1;
+            z-index: 1;
+            background-color: var(--map-bg);
+        }
+
+        /* Sidebar */
+        #sidebar {
+            width: var(--sidebar-width);
+            background: rgba(17, 24, 39, 0.95);
+            border-right: 1px solid var(--accent-gold);
+            z-index: 1000;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: transform 0.3s ease;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+        }
+
+        .sidebar-toggle {
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1002;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--accent-gold);
+            background: rgba(10, 14, 26, 0.85);
+            color: var(--accent-gold);
+            cursor: pointer;
+            font-size: 1.2rem;
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-header {
+            border-bottom: 1px solid var(--accent-gold);
+            padding-bottom: 15px;
+        }
+
+        .stop-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stop-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+        }
+
+        .stop-book {
+            font-size: 0.9rem;
+            color: var(--terracotta);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stop-description {
+            font-size: 1.2rem;
+            line-height: 1.4;
+            margin-top: 10px;
+        }
+
+        .stop-detail {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(156, 163, 175, 0.2);
+            padding-top: 15px;
+        }
+
+        /* Timeline */
+        #timeline-container {
+            height: var(--timeline-height);
+            background: var(--bg-color);
+            border-top: 1px solid var(--accent-gold);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .timeline-progress-bar {
+            height: 4px;
+            background: #1f2937;
+            width: 100%;
+            position: relative;
+        }
+
+        #progress-fill {
+            height: 100%;
+            background: var(--accent-gold);
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px var(--accent-gold);
+        }
+
+        #timeline-scroll {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            padding: 0 20px;
+            gap: 15px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-gold) var(--bg-color);
+        }
+
+        #timeline-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+        #timeline-scroll::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        #timeline-scroll::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            flex: 0 0 auto;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .timeline-item:hover {
+            background: rgba(212, 168, 75, 0.1);
+            color: var(--text-primary);
+        }
+
+        .timeline-item.active {
+            background: var(--accent-gold);
+            color: var(--bg-color);
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(212, 168, 75, 0.4);
+        }
+
+        /* Controls */
+        #controls {
+            position: absolute;
+            bottom: 120px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid var(--accent-gold);
+            background: rgba(10, 14, 26, 0.8);
+            color: var(--accent-gold);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .control-btn:hover {
+            background: var(--accent-gold);
+            color: var(--bg-color);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        #autoplay-btn.playing {
+            background: var(--terracotta);
+            color: white;
+            border-color: var(--terracotta);
+            animation: pulse-btn 2s infinite;
+        }
+
+        @keyframes pulse-btn {
+            0% { box-shadow: 0 0 0 0 rgba(193, 90, 61, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(193, 90, 61, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(193, 90, 61, 0); }
+        }
+
+        #progress-text {
+            position: absolute;
+            top: -30px;
+            right: 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+        }
+
+        /* Custom Marker Styles */
+        .marker-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .marker-circle {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-gold);
+            border: 2px solid var(--text-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            z-index: 2;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .marker-pulse {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            z-index: 1;
+            animation: marker-pulse-anim 2s infinite;
+        }
+
+        @keyframes marker-pulse-anim {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-color);
+            padding: 5px 20px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-align: center;
+            z-index: 1000;
+            border-top: 1px solid rgba(212, 168, 75, 0.1);
+        }
+
+        /* Sidebar collapsed state */
+        .sidebar-collapsed #sidebar {
+            transform: translateX(-100%);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+            #sidebar {
+                width: 100%;
+                height: 40%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                border-left: none;
+                border-right: none;
+                border-top: 1px solid var(--accent-gold);
+                border-radius: 20px 20px 0 0;
+                padding: 20px;
+                z-index: 1001;
+                transform: translateY(0);
+                transition: transform 0.3s ease;
+            }
+            .sidebar-toggle {
+                display: flex;
+            }
+            .sidebar-collapsed #sidebar {
+                transform: translateY(calc(100% - 60px));
+            }
+            .sidebar-collapsed .sidebar-toggle {
+                left: auto;
+                right: 10px;
+                top: auto;
+                bottom: calc(40vh - 20px);
+            }
+            header {
+                height: 60px;
+            }
+            h1 { font-size: 1.2rem; }
+            .subtitle { font-size: 0.8rem; }
+            #timeline-container { height: 140px; }
+            #controls { bottom: 160px; right: 10px; }
+            .control-btn { width: 40px; height: 40px; font-size: 1rem; }
+            .stop-name { font-size: 1.2rem; }
+            .stop-description { font-size: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            #sidebar { padding: 15px; height: 45%; }
+            .stop-icon { font-size: 2rem; }
+            .timeline-item { font-size: 0.65rem; padding: 5px 10px; }
+            header { height: 50px; }
+            h1 { font-size: 1rem; }
+            .subtitle { font-size: 0.7rem; }
+        }
+
+        /* Intro Overlay */
+        #intro-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2000;
+            background: rgba(10, 14, 26, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            backdrop-filter: blur(8px);
+            opacity: 1;
+            transition: opacity 1s ease;
+            pointer-events: auto;
+        }
+        #intro-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .intro-content {
+            max-width: 600px;
+            text-align: center;
+        }
+        .intro-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(212, 168, 75, 0.3);
+        }
+        .intro-content .intro-sub {
+            font-size: 1.3rem;
+            color: var(--terracotta);
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+        .intro-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        .intro-btn {
+            font-family: 'Cinzel', serif;
+            background: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 12px 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .intro-btn:hover {
+            background: var(--accent-gold);
+            color: var(--bg-color);
+        }
+        .intro-legend {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .intro-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .intro-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .intro-legend-dot.gold { background: var(--accent-gold); }
+        .intro-legend-dot.terracotta { background: var(--terracotta); }
+
+        @media (max-width: 480px) {
+            .intro-content h2 { font-size: 1.8rem; }
+            .intro-content p { font-size: 0.95rem; }
+            .intro-legend { grid-template-columns: 1fr; }
+        }
+
+        /* Leaflet Overrides */
+        .leaflet-container {
+            background: var(--map-bg) !important;
+        }
+        .leaflet-bar {
+            border: none !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+        }
+        .leaflet-bar a {
+            background-color: rgba(17, 24, 39, 0.8) !important;
+            color: var(--accent-gold) !important;
+            border-bottom: 1px solid rgba(212, 168, 75, 0.2) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Odyssey: The Journey of Odysseus</h1>
+        <div class="subtitle">A 10-Year Voyage Home</div>
+    </header>
+
+    <main>
+        <div id="intro-overlay">
+            <div class="intro-content">
+                <h2>ODYSSEY</h2>
+                <div class="intro-sub">The Journey of Odysseus</div>
+                <p>Explore the 10-year voyage of Homer's legendary hero as he battles monsters, resists goddesses, and endures the wrath of Poseidon on his perilous journey home from the Trojan War to Ithaca.</p>
+                <div class="intro-legend">
+                    <div class="intro-legend-item"><span class="intro-legend-dot gold"></span> 14 Chronological Stops</div>
+                    <div class="intro-legend-item"><span class="intro-legend-dot terracotta"></span> Click to Explore</div>
+                    <div class="intro-legend-item"><span class="intro-legend-dot gold"></span> Animated Journey Path</div>
+                    <div class="intro-legend-item"><span class="intro-legend-dot terracotta"></span> Auto-Play Mode</div>
+                </div>
+                <button id="intro-btn" class="intro-btn" type="button">Begin Journey</button>
+            </div>
+        </div>
+        <div id="map"></div>
+        <button id="sidebar-toggle" class="sidebar-toggle" type="button" title="Toggle sidebar">☰</button>
+        
+        <aside id="sidebar">
+            <div class="info-header">
+                <span id="sidebar-icon" class="stop-icon">🏛️</span>
+                <h2 id="sidebar-name" class="stop-name">Troy</h2>
+                <div id="sidebar-book" class="stop-book">The Iliad / Odyssey Book 9</div>
+            </div>
+            <div id="sidebar-desc" class="stop-description">
+                After ten years of war, the Greeks triumph through Odysseus's cunning Trojan Horse stratagem.
+            </div>
+            <div id="sidebar-detail" class="stop-detail">
+                Details go here...
+            </div>
+        </aside>
+
+        <div id="controls">
+            <button id="prev-btn" class="control-btn" type="button" title="Previous">❮</button>
+            <button id="autoplay-btn" class="control-btn" type="button" title="Auto-play">▶</button>
+            <button id="next-btn" class="control-btn" type="button" title="Next">❯</button>
+        </div>
+    </main>
+
+    <div id="timeline-container">
+        <div class="timeline-progress-bar">
+            <div id="progress-fill"></div>
+            <div id="progress-text">Stop 1 of 14</div>
+        </div>
+        <div id="timeline-scroll">
+            <!-- Timeline items injected by JS -->
+        </div>
+    </div>
+
+    <footer>
+        Based on Homer's The Odyssey • Map data © OpenStreetMap contributors
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        const journeyStops = [
+            {
+                id: 'troy',
+                name: 'Troy',
+                coords: [39.96, 26.24],
+                book: 'The Iliad / Odyssey Book 9 (backstory)',
+                icon: '🏛️',
+                description: 'After ten years of war, the Greeks triumph through Odysseus\'s cunning Trojan Horse stratagem. He departs with 12 ships and 600 men, eager to return to Ithaca — unknowingly beginning a decade-long ordeal.',
+                detail: 'Troy (modern Hisarlik, Turkey) was the stage for the Trojan War. Odysseus, King of Ithaca, was one of the war\'s greatest heroes — renowned not for brute strength but for his sharp mind and silver tongue. His invention of the Trojan Horse ended the war and sealed Troy\'s fate, but it also earned him the enmity of several gods who favored the city.'
+            },
+            {
+                id: 'cicones',
+                name: 'Cicones (Ismarus)',
+                coords: [40.88, 25.57],
+                book: 'Odyssey Book 9',
+                icon: '⚔️',
+                description: 'The first stop after Troy. Odysseus sacks the city of Ismarus, but his men linger to feast and drink. The Cicones regroup and counterattack, killing six men from each ship — a costly lesson in discipline.',
+                detail: 'This raid reveals a pattern that will repeat throughout the journey: Odysseus\'s men lack restraint. Despite his orders to leave quickly after taking supplies, they stay to celebrate. The counterattack costs 72 lives (six per ship). It\'s an early warning about the crew\'s fatal flaw — one they never truly overcome.'
+            },
+            {
+                id: 'lotus',
+                name: 'Lotus Eaters',
+                coords: [33.0, 13.0],
+                book: 'Odyssey Book 9',
+                icon: '🌸',
+                description: 'A peaceful people whose lotus fruit induces blissful forgetfulness. The men who eat it lose all desire to return home. Odysseus drags them back to the ships by force, tied to their benches.',
+                detail: 'The Lotus Eaters (likely Djerba Island, off modern Tunisia) represent the temptation of escape — a drug-induced paradise where all ambition dissolves. The lotus isn\'t dangerous in itself, but it erases identity and purpose. Odysseus\'s forceful rescue of his men shows his unwavering commitment to home, even when his crew doesn\'t share it.'
+            },
+            {
+                id: 'cyclops',
+                name: 'Cyclops (Polyphemus)',
+                coords: [37.5, 14.0],
+                book: 'Odyssey Book 9',
+                icon: '👁️',
+                description: 'The most famous episode. Polyphemus, the one-eyed son of Poseidon, traps Odysseus and his men in his cave, devouring them two at a time. Odysseus gets the giant drunk, blinds him, and escapes hidden under sheep — but his pride costs him dearly when he shouts his real name as he sails away.',
+                detail: 'This is the defining moment of the Odyssey. Odysseus introduces himself as "Nobody" to the Cyclops, executes a brilliant escape — and then ruins it by shouting his true name in victory. Polyphemus prays to his father Poseidon to curse Odysseus, and Poseidon obliges. Every subsequent hardship traces back to this moment of hubris. The episode is located on Sicily, near Mount Etna, in later tradition.'
+            },
+            {
+                id: 'aeolus',
+                name: 'Aeolus (Aeolian Islands)',
+                coords: [38.5, 14.5],
+                book: 'Odyssey Book 10',
+                icon: '🌬️',
+                description: 'The wind god Aeolus gives Odysseus a leather bag containing all adverse winds, allowing him to sail straight home. Within sight of Ithaca, his greedy crew opens the bag, thinking it holds treasure. The winds burst out, driving them all the way back to Aeolus — who refuses to help a second time.',
+                detail: 'The island of Aeolia (Lipari, north of Sicily) was ruled by Aeolus, keeper of the winds. The bag was a gift of unbelievable generosity — Odysseus was so close to home he could see the smoke from his own palace. The crew\'s greed and distrust cost them everything. Aeolus\'s refusal to help again is devastating: "Begone. The gods hate you."'
+            },
+            {
+                id: 'laestrygonians',
+                name: 'Laestrygonians',
+                coords: [41.0, 13.0],
+                book: 'Odyssey Book 10',
+                icon: '🪨',
+                description: 'Giant cannibals who destroy eleven of Odysseus\'s twelve ships. The fleet sails into a protected harbor — a deadly trap. The Laestrygonians hurl massive boulders, smashing the ships and devouring the crews. Only Odysseus\'s ship survives, moored outside the harbor.',
+                detail: 'This is the single greatest catastrophe of the journey. 11 ships and perhaps 500 men are lost in a single day. Odysseus survives only because he sensed danger and kept his ship outside the narrow harbor entrance. The location is traditionally identified as Formia, Italy, or the mountainous coast of Sardinia. The message is clear: even a moment of caution can mean the difference between life and death.'
+            },
+            {
+                id: 'circe',
+                name: 'Circe (Aeaea)',
+                coords: [42.0, 11.5],
+                book: 'Odyssey Books 10-12',
+                icon: '🐷',
+                description: 'The enchantress Circe turns Odysseus\'s scouting party into pigs. Protected by the herb moly (given by Hermes), Odysseus forces her to restore his men. He remains on her island for a year as her lover, and she becomes his most valuable advisor — guiding him through the Underworld, Sirens, Scylla, and beyond.',
+                detail: 'Circe\'s island (Mount Circeo, Italy) represents both temptation and transformation. Odysseus\'s year with her is the longest single stop of his journey. She gives him the knowledge he needs to survive everything that follows: how to consult Tiresias in Hades, how to resist the Sirens, how to navigate Scylla and Charybdis. Without Circe, Odysseus would never have reached home. She is the most complex female figure in the epic — both dangerous and indispensable.'
+            },
+            {
+                id: 'underworld',
+                name: 'The Underworld (Hades)',
+                coords: [37.0, -1.0],
+                book: 'Odyssey Book 11',
+                icon: '💀',
+                description: 'Odyssey travels to the land of the dead to consult the prophet Tiresias. He encounters the shades of his mother, his fallen comrades, and the great heroes of the Trojan War — including Achilles, who makes the haunting confession that he would rather be a living slave than king of all the dead.',
+                detail: 'Book 11, the Nekyia, is the emotional and philosophical heart of the Odyssey. Tiresias warns Odysseus about the Cattle of Helios and prophesies his eventual peaceful death in old age. Odysseus speaks with his mother Anticleia, who died of grief waiting for him. He watches the torments of Tantalus and Sisyphus. And he hears Achilles say the most famous line: "I would rather be a hired hand on a poor man\'s farm than king of all the dead." The Underworld teaches Odysseus what mortality means.'
+            },
+            {
+                id: 'sirens',
+                name: 'The Sirens',
+                coords: [40.5, 14.3],
+                book: 'Odyssey Book 12',
+                icon: '🎵',
+                description: 'Creatures whose enchanting song promises knowledge of all things — but lures sailors to their deaths on the rocks. Odysseus orders his crew to plug their ears with wax and tie him to the mast. He becomes the only mortal to hear the Sirens\' song and survive.',
+                detail: 'The Sirens (the Galli Islands, off Italy\'s Amalfi Coast) sing of omniscience: "We know all things that come to pass." Odysseus\'s choice to hear their song while physically restrained is a paradox — he satisfies his boundless curiosity while acknowledging his limits. The episode asks: What would you sacrifice for knowledge? Odysseus sacrifices his freedom to gain it, and survives only because his men refuse to untie him.'
+            },
+            {
+                id: 'scylla',
+                name: 'Scylla & Charybdis',
+                coords: [38.2, 15.6],
+                book: 'Odyssey Book 12',
+                icon: '🌊',
+                description: 'A six-headed monster (Scylla) and a whirlpool (Charybdis) flanking a narrow strait. Circe advised Odysseus to steer toward Scylla, losing six men, rather than risk Charybdis destroying the entire ship. Odysseus obeys, but doesn\'t tell his crew. Six men are snatched from the deck and devoured alive.',
+                detail: 'The Strait of Messina (between Italy and Sicily) is the real-world location for this impossible choice. Scylla lives in a cave atop a cliff, each of her six heads snatching a man from the passing ship. Charybdis sucks the entire sea into a whirlpool three times a day. Odysseus chooses the lesser evil, but he must live with the screams of his dying men — men who didn\'t know what he had chosen for them. This is leadership at its most brutal and lonely.'
+            },
+            {
+                id: 'thrinacia',
+                name: 'Thrinacia (Cattle of Helios)',
+                coords: [37.0, 15.0],
+                book: 'Odyssey Book 12',
+                icon: '🐂',
+                description: 'The sun god\'s sacred island. Despite being warned by both Tiresias and Circe, Odysseus\'s starving men slaughter and eat Helios\'s cattle while he sleeps. Helios demands vengeance. Zeus destroys their ship with a thunderbolt. Odysseus alone survives, clinging to wreckage.',
+                detail: 'Thrinacia (Sicily) is where Odysseus\'s journey as a captain ends. Every warning pointed to this moment: touch the cattle and lose everything. His men, driven by starvation, break the final taboo. The thunderbolt from Zeus is the cosmic consequence. Odysseus is swept back toward Charybdis, barely escapes, and drifts alone for nine days. He loses his ship, his crew, his status — everything except his will to live and return home.'
+            },
+            {
+                id: 'calypso',
+                name: 'Calypso (Ogygia)',
+                coords: [35.9, 14.5],
+                book: 'Odyssey Books 1, 5',
+                icon: '🏝️',
+                description: 'The nymph Calypso holds Odysseus captive on her island for seven years, offering him immortality and eternal youth if he stays. But Odysseus sits on the shore every day, gazing at the sea, weeping for home. Zeus finally sends Hermes to order his release.',
+                detail: 'Ogygia (traditionally identified with Malta or Gozo) is a paradise, but it is not Ithaca. Calypso offers Odysseus everything a man could want — except what he actually wants. Her name means "the concealer" or "the hidden one." For seven years, the greatest hero of the Trojan War is hidden from the world, trapped in comfort. His daily tears on the shore define him: he chooses mortality with his family over immortality without them.'
+            },
+            {
+                id: 'phaeacia',
+                name: 'Phaeacia (Scheria)',
+                coords: [39.6, 19.9],
+                book: 'Odyssey Books 6-8, 13',
+                icon: '⛵',
+                description: 'Shipwrecked and exhausted, Odysseus washes ashore on Scheria, home of the Phaeacians — master seafarers. He is welcomed by Princess Nausicaa and King Alcinous. At a great feast, he reveals his identity and narrates his entire journey (Books 9-12). The Phaeacians carry him home to Ithaca in a magical ship while he sleeps.',
+                detail: 'Scheria (Corfu, Greece) represents the ideal civilization — prosperous, hospitable, and generous. The Phaeacians honor xenia (guest-friendship) above all. Odysseus\'s storytelling here is the pinnacle of his fame: he becomes the singer of his own epic. The Phaeacians give him more treasure than he won at Troy and sail him home. But their kindness costs them — Poseidon turns their ship to stone and walls off their harbor forever.'
+            },
+            {
+                id: 'ithaca',
+                name: 'Ithaca',
+                coords: [38.4, 20.6],
+                book: 'Odyssey Books 13-24',
+                icon: '🏠',
+                description: 'Home at last after 20 years. Odysseus arrives in disguise, aided by Athena. With his son Telemachus, he infiltrates his own palace, strings his great bow (which only he can), and slaughters the 108 suitors who have been consuming his wealth and pressing Penelope to remarry. He reunites with his faithful wife and his aged father Laertes — and restores peace to Ithaca.',
+                detail: 'Ithaca (Ithaki, Greece) is the destination — and also the real test. The hero who defeated monsters and resisted goddesses must now reclaim his household. The second half of the Odyssey (Books 13-24) is a domestic epic: a father and son fighting for their home. Odysseus\'s bow — which only he can string — is the symbol of his identity. The restoration of his household is violent but necessary. Athena herself intervenes to stop the cycle of revenge, and Odysseus finally finds peace.'
+            }
+        ];
+
+        let currentIndex = 0;
+        let isPlaying = false;
+        let playInterval = null;
+
+        // Initialize Map
+        const map = L.map('map', {
+            zoomControl: false,
+            attributionControl: false
+        }).setView([38.0, 18.0], 5);
+
+        // Dark Tiles
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            maxZoom: 19
+        }).addTo(map);
+
+        // Elements
+        const sidebarIcon = document.getElementById('sidebar-icon');
+        const sidebarName = document.getElementById('sidebar-name');
+        const sidebarBook = document.getElementById('sidebar-book');
+        const sidebarDesc = document.getElementById('sidebar-desc');
+        const sidebarDetail = document.getElementById('sidebar-detail');
+        const timelineScroll = document.getElementById('timeline-scroll');
+        const progressFill = document.getElementById('progress-fill');
+        const progressText = document.getElementById('progress-text');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const autoplayBtn = document.getElementById('autoplay-btn');
+
+        // State
+        const markers = [];
+        let pathLine = null;
+
+        // Custom Marker Function
+        function createCustomMarker(stop, index) {
+            const icon = L.divIcon({
+                className: 'marker-container',
+                html: `
+                    <div class="marker-pulse" id="pulse-${index}"></div>
+                    <div class="marker-circle">${stop.icon}</div>
+                `,
+                iconSize: [40, 40],
+                iconAnchor: [20, 20]
+            });
+            return L.marker(stop.coords, { icon: icon });
+        }
+
+        // Initialize UI
+        function init() {
+            // Create Timeline
+            journeyStops.forEach((stop, index) => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item';
+                item.id = `timeline-item-${index}`;
+                item.innerText = stop.name;
+                item.addEventListener('click', () => goToStop(index));
+                timelineScroll.appendChild(item);
+
+                // Create Marker
+                const marker = createCustomMarker(stop, index);
+                marker.on('click', () => goToStop(index));
+                marker.addTo(map);
+                markers.push(marker);
+            });
+
+            // Create Path (empty initially, animated below)
+            const latlngs = journeyStops.map(s => s.coords);
+            pathLine = L.polyline([], {
+                color: '#d4a84b',
+                weight: 4,
+                opacity: 0.7,
+                dashArray: '10, 10',
+                lineJoin: 'round'
+            }).addTo(map);
+
+            // Animate Path on Load
+            animatePath(latlngs);
+
+            // Initial State
+            goToStop(0);
+        }
+
+        // Path Animation (Simulated tracing)
+        function animatePath(latlngs) {
+            let currentPoints = [];
+            let i = 0;
+            
+            // Reset path to empty
+            pathLine.setLatLngs([]);
+
+            function step() {
+                if (i < latlngs.length) {
+                    currentPoints.push(latlngs[i]);
+                    pathLine.setLatLngs(currentPoints);
+                    i++;
+                    setTimeout(step, 400);
+                } else {
+                    // Finalize path with glow effect
+                    pathLine.setStyle({ dashArray: null, weight: 5, opacity: 1 });
+                }
+            }
+            step();
+        }
+
+        function goToStop(index) {
+            if (index < 0 || index >= journeyStops.length) return;
+            
+            currentIndex = index;
+            const stop = journeyStops[index];
+
+            // Update Map
+            map.flyTo(stop.coords, 6, {
+                animate: true,
+                duration: 1.5
+            });
+
+            // Update Sidebar
+            sidebarIcon.innerText = stop.icon;
+            sidebarName.innerText = stop.name;
+            sidebarBook.innerText = stop.book;
+            sidebarDesc.innerText = stop.description;
+            sidebarDetail.innerText = stop.detail;
+
+            // Update Timeline
+            document.querySelectorAll('.timeline-item').forEach((el, idx) => {
+                el.classList.toggle('active', idx === index);
+            });
+            
+            // Scroll timeline to active item
+            const activeItem = document.getElementById(`timeline-item-${index}`);
+            activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+            // Update Progress
+            const progress = ((index + 1) / journeyStops.length) * 100;
+            progressFill.style.width = `${progress}%`;
+            progressText.innerText = `Stop ${index + 1} of ${journeyStops.length}`;
+
+            // Update Markers (Pulse effect)
+            markers.forEach((m, idx) => {
+                const pulse = document.getElementById(`pulse-${idx}`);
+                if (pulse) {
+                    pulse.style.display = (idx === index) ? 'block' : 'none';
+                }
+            });
+
+            // Update Buttons
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === journeyStops.length - 1;
+        }
+
+        function nextStop() {
+            if (currentIndex < journeyStops.length - 1) {
+                goToStop(currentIndex + 1);
+            } else {
+                stopAutoplay();
+            }
+        }
+
+        function prevStop() {
+            if (currentIndex > 0) {
+                goToStop(currentIndex - 1);
+            }
+        }
+
+        function toggleAutoplay() {
+            if (isPlaying) {
+                stopAutoplay();
+            } else {
+                startAutoplay();
+            }
+        }
+
+        function startAutoplay() {
+            isPlaying = true;
+            autoplayBtn.innerText = '⏸';
+            autoplayBtn.classList.add('playing');
+            playInterval = setInterval(nextStop, 5000);
+        }
+
+        function stopAutoplay() {
+            isPlaying = false;
+            autoplayBtn.innerText = '▶';
+            autoplayBtn.classList.remove('playing');
+            clearInterval(playInterval);
+        }
+
+        // Intro Overlay
+        const introOverlay = document.getElementById('intro-overlay');
+        const introBtn = document.getElementById('intro-btn');
+        introBtn.addEventListener('click', () => {
+            introOverlay.classList.add('hidden');
+        });
+
+        // Sidebar Toggle
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const appMain = document.querySelector('main');
+        let sidebarVisible = true;
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebarVisible = !sidebarVisible;
+            appMain.classList.toggle('sidebar-collapsed', !sidebarVisible);
+            sidebarToggle.innerText = sidebarVisible ? '☰' : '☷';
+        });
+
+        // Event Listeners
+        prevBtn.addEventListener('click', prevStop);
+        nextBtn.addEventListener('click', nextStop);
+        autoplayBtn.addEventListener('click', toggleAutoplay);
+
+        // Start
+        window.onload = init;
+
+    </script>
+</body>
+</html>
