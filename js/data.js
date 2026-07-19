@@ -40,8 +40,6 @@ const journeyStops = [
             'Crew remaining': '~528 men',
             'Distance from Troy': '~180 km NE'
         },
-        movieImg: 'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image7.jpg',
-        movieImgCaption: 'Matt Damon as Odysseus leads the charge — Christopher Nolan\'s The Odyssey (2026)',
         sources: [
             'Homer, Odyssey, Book 9.39–61',
             'Euripides, Rhesus (Cicones as Thracian allies of Troy)',
@@ -79,8 +77,6 @@ const journeyStops = [
         icon: '\u{1F441}\uFE0F',
         description: 'The most famous episode. Polyphemus, the one-eyed son of Poseidon, traps Odysseus and his men in his cave, devouring them two at a time. Odysseus gets the giant drunk, blinds him, and escapes hidden under sheep — but his pride costs him dearly when he shouts his real name as he sails away.',
         detail: 'This is the defining moment of the Odyssey. Odysseus introduces himself as "Nobody" to the Cyclops, executes a brilliant escape — and then ruins it by shouting his true name in victory. Polyphemus prays to his father Poseidon to curse Odysseus, and Poseidon obliges. Every subsequent hardship traces back to this moment of hubris. The episode is traditionally located on the eastern coast of Sicily (Aci Castello/Aci Trezza area), near Mount Etna.',
-        movieImg: 'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image2.jpg',
-        movieImgCaption: 'Matt Damon as Odysseus — Christopher Nolan\'s The Odyssey (2026)',
         period: '~3 days (1 day trapped, 1 night of escape)',
         region: 'Sicily, near Mount Etna (modern Italy)',
         stats: {
@@ -215,8 +211,6 @@ const journeyStops = [
             'Crew remaining': '~42–50 men',
             'Method': 'Ears plugged with wax, Odysseus tied to mast'
         },
-        movieImg: 'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image6.jpg',
-        movieImgCaption: 'Matt Damon as Odysseus — Christopher Nolan\'s The Odyssey (2026)',
         sources: [
             'Homer, Odyssey, Book 12.153–200',
             'Apollodorus, Library, Epitome 7.18–19',

@@ -5,6 +5,10 @@ let playInterval = null;
 // State
 const markers = [];
 let pathLine = null;
+let arrowDecorator = null;
+let stillIndex = 0;
+let stillImages = [];
+let stillCaptions = [];
 
 // Initialize Map
 const map = L.map('map', {
@@ -32,6 +36,9 @@ const sidebarSources = document.getElementById('sidebar-sources');
 const sidebarStillSection = document.getElementById('sidebar-still-section');
 const stillImg = document.getElementById('still-img');
 const stillCaption = document.getElementById('still-caption');
+const stillCounter = document.getElementById('still-counter');
+const stillPrev = document.getElementById('still-prev');
+const stillNext = document.getElementById('still-next');
 const timelineScroll = document.getElementById('timeline-scroll');
 const progressFill = document.getElementById('progress-fill');
 const progressText = document.getElementById('progress-text');
@@ -44,7 +51,7 @@ function createCustomMarker(stop, index) {
     const icon = L.divIcon({
         className: 'marker-container',
         html: [
-            '<div class="marker-pin">',
+            '<div class="marker-pin" id="pin-' + index + '">',
                 '<div class="marker-emoji">' + stop.icon + '</div>',
                 '<div class="marker-point"></div>',
             '</div>',
@@ -78,9 +85,8 @@ function init() {
     var latlngs = journeyStops.map(function (s) { return s.coords; });
     pathLine = L.polyline([], {
         color: '#cc0809',
-        weight: 4,
-        opacity: 0.7,
-        dashArray: '10, 10',
+        weight: 2,
+        opacity: 0.8,
         lineJoin: 'round'
     }).addTo(map);
 
@@ -106,8 +112,20 @@ function animatePath(latlngs) {
             i++;
             setTimeout(step, 400);
         } else {
-            // Finalize path with glow effect
-            pathLine.setStyle({ dashArray: null, weight: 5, opacity: 1 });
+            // Path fully drawn — add arrows once
+            if (!arrowDecorator && typeof L.polylineDecorator !== 'undefined') {
+                arrowDecorator = L.polylineDecorator(pathLine, {
+                    patterns: [{
+                        offset: '12%',
+                        repeat: '22%',
+                        symbol: L.Symbol.arrowHead({
+                            pixelSize: 10,
+                            polygon: false,
+                            pathOptions: { color: '#cc0809', weight: 1.5, opacity: 0.9 }
+                        })
+                    }]
+                }).addTo(map);
+            }
         }
     }
     step();
@@ -136,14 +154,17 @@ function goToStop(index) {
 
     // Update Movie Still
     if (stop.movieImg) {
-        var imgs = Array.isArray(stop.movieImg) ? stop.movieImg : [stop.movieImg];
-        var caps = Array.isArray(stop.movieImgCaption) ? stop.movieImgCaption : [stop.movieImgCaption || ''];
-        stillImg.src = imgs[0];
-        stillCaption.textContent = caps[0] || '';
+        stillImages = Array.isArray(stop.movieImg) ? stop.movieImg : [stop.movieImg];
+        stillCaptions = Array.isArray(stop.movieImgCaption) ? stop.movieImgCaption : [stillCaptions[0] || ''];
+        stillIndex = 0;
+        showStill();
         sidebarStillSection.style.display = 'block';
     } else {
+        stillImages = [];
+        stillCaptions = [];
         stillImg.src = '';
         stillCaption.textContent = '';
+        stillCounter.textContent = '';
         sidebarStillSection.style.display = 'none';
     }
 
@@ -192,11 +213,15 @@ function goToStop(index) {
     progressFill.style.width = progress + '%';
     progressText.innerText = 'Stop ' + (index + 1) + ' of ' + journeyStops.length;
 
-    // Update Markers (Pulse effect)
+    // Update Markers (Pulse + highlight)
     markers.forEach(function (m, idx) {
         var pulse = document.getElementById('pulse-' + idx);
         if (pulse) {
             pulse.classList.toggle('active', idx === index);
+        }
+        var pin = document.getElementById('pin-' + idx);
+        if (pin) {
+            pin.classList.toggle('active-marker', idx === index);
         }
     });
 
@@ -257,6 +282,25 @@ sidebarToggle.addEventListener('click', function () {
     sidebarVisible = !sidebarVisible;
     appMain.classList.toggle('sidebar-collapsed', !sidebarVisible);
     sidebarToggle.innerText = sidebarVisible ? '☰' : '☷';
+});
+
+// Still Carousel
+function showStill() {
+    if (stillIndex < 0) stillIndex = 0;
+    if (stillIndex >= stillImages.length) stillIndex = stillImages.length - 1;
+    stillImg.src = stillImages[stillIndex];
+    stillCaption.textContent = stillCaptions[stillIndex] || '';
+    stillCounter.textContent = stillImages.length > 1 ? (stillIndex + 1) + ' / ' + stillImages.length : '';
+    stillPrev.style.display = stillImages.length > 1 ? '' : 'none';
+    stillNext.style.display = stillImages.length > 1 ? '' : 'none';
+}
+stillPrev.addEventListener('click', function () {
+    stillIndex = (stillIndex - 1 + stillImages.length) % stillImages.length;
+    showStill();
+});
+stillNext.addEventListener('click', function () {
+    stillIndex = (stillIndex + 1) % stillImages.length;
+    showStill();
 });
 
 // Event Listeners

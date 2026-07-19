@@ -51,7 +51,13 @@
             </div>
             <div id="sidebar-still-section" class="stop-info-section" style="display:none">
                 <h3>Film Still</h3>
-                <div id="sidebar-still"><img id="still-img" src="" alt="Movie still"><div id="still-caption"></div></div>
+                <div id="sidebar-still">
+                    <button id="still-prev" class="still-arrow still-arrow-left" type="button">❮</button>
+                    <div class="still-image-wrap"><img id="still-img" src="" alt="Movie still"></div>
+                    <button id="still-next" class="still-arrow still-arrow-right" type="button">❯</button>
+                </div>
+                <div id="still-counter" class="still-counter"></div>
+                <div id="still-caption"></div>
             </div>
             <div id="sidebar-stats-section" class="stop-info-section" style="display:none">
                 <h3>Statistics</h3>
@@ -92,6 +98,7 @@
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-polylinedecorator@1.6.0/dist/leaflet.polylineDecorator.js"></script>
 
     <!-- Project JS -->
     <script src="js/data.js"></script>
