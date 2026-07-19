@@ -2,8 +2,6 @@
 
 An interactive infographic map of Odysseus's 10-year journey from Homer's *The Odyssey*, presented in chronological order with 14 stops from Troy to Ithaca.
 
-![Odyssey Map Screenshot](screenshots/zoom5-full.png)
-
 ## Features
 
 - **Interactive Map**: Leaflet.js-powered map with dark CartoDB tiles
