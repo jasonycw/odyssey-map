@@ -40,6 +40,8 @@ const journeyStops = [
             'Crew remaining': '~528 men',
             'Distance from Troy': '~180 km NE'
         },
+        movieImg: 'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image7.jpg',
+        movieImgCaption: 'Odysseus\'s crew battling the Cicones at Ismarus — Christopher Nolan\'s The Odyssey (2026)',
         sources: [
             'Homer, Odyssey, Book 9.39–61',
             'Euripides, Rhesus (Cicones as Thracian allies of Troy)',
@@ -85,6 +87,14 @@ const journeyStops = [
             'Crew remaining': '~522 men',
             'Cave dimensions': 'Described as large enough for 600 sheep'
         },
+        movieImg: [
+            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image5.jpg',
+            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image6.jpg'
+        ],
+        movieImgCaption: [
+            'Matt Damon as Odysseus battles Polyphemus — Christopher Nolan\'s The Odyssey (2026)',
+            'Odysseus at the entrance of the Cyclops\' cave — Christopher Nolan\'s The Odyssey (2026)'
+        ],
         sources: [
             'Homer, Odyssey, Book 9.105–566',
             'Euripides, Cyclops (satyr play)',
@@ -331,16 +341,8 @@ const journeyStops = [
         icon: '\u{1F3E0}',
         description: 'Home at last after 20 years. Odysseus arrives in disguise, aided by Athena. With his son Telemachus, he infiltrates his own palace, strings his great bow (which only he can), and slaughters the 108 suitors who have been consuming his wealth and pressing Penelope to remarry.',
         detail: 'Ithaca (Ithaki, Greece) is the destination — and also the real test. The hero who defeated monsters and resisted goddesses must now reclaim his household. The second half of the Odyssey (Books 13–24) is a domestic epic: a father and son fighting for their home. The restoration is violent but necessary. Athena herself intervenes to stop the cycle of revenge.',
-        movieImg: [
-            'https://sm.ign.com/t/ign_me/photo/default/ct-34089-msg-1777970654249_mkhn.1400.jpg',
-            'https://sm.ign.com/t/ign_me/photo/default/ct-43454-1777970654250_msf3.1400.jpg',
-            'https://sm.ign.com/t/ign_me/photo/default/ct-44304-msg-1777970654250_u2x1.1400.jpg'
-        ],
-        movieImgCaption: [
-            'Anne Hathaway as Penelope and Tom Holland as Telemachus in The Odyssey (2026)',
-            'Robert Pattinson as Antinous in The Odyssey (2026)',
-            'John Leguizamo as Eumaeus in The Odyssey (2026)'
-        ],
+        movieImg: 'https://sm.ign.com/t/ign_me/photo/default/ct-34089-msg-1777970654249_mkhn.1400.jpg',
+        movieImgCaption: 'Anne Hathaway as Penelope and Tom Holland as Telemachus in The Odyssey (2026)',
         period: 'c. 1164 BCE (20 years after departure)',
         region: 'Ithaki, Ionian Islands (modern Greece)',
         stats: {

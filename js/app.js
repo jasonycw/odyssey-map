@@ -4,8 +4,8 @@ let playInterval = null;
 
 // State
 const markers = [];
+const arrowMarkers = [];
 let pathLine = null;
-let arrowDecorator = null;
 let stillIndex = 0;
 let stillImages = [];
 let stillCaptions = [];
@@ -97,6 +97,27 @@ function init() {
     goToStop(0);
 }
 
+// Calculate bearing between two latlng points
+function bearing(from, to) {
+    var dLon = (to[1] - from[1]) * Math.PI / 180;
+    var lat1 = from[0] * Math.PI / 180;
+    var lat2 = to[0] * Math.PI / 180;
+    var y = Math.sin(dLon) * Math.cos(lat2);
+    var x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+    return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+}
+
+// Create a directional arrow marker at a point
+function createArrowMarker(at, angle) {
+    var icon = L.divIcon({
+        className: 'route-arrow-container',
+        html: '<div class="route-arrow" style="transform:rotate(' + angle + 'deg)">&#9654;</div>',
+        iconSize: [14, 14],
+        iconAnchor: [7, 7]
+    });
+    return L.marker(at, { icon: icon, interactive: false });
+}
+
 // Path Animation (Simulated tracing)
 function animatePath(latlngs) {
     var currentPoints = [];
@@ -112,19 +133,14 @@ function animatePath(latlngs) {
             i++;
             setTimeout(step, 400);
         } else {
-            // Path fully drawn — add arrows once
-            if (!arrowDecorator && typeof L.polylineDecorator !== 'undefined') {
-                arrowDecorator = L.polylineDecorator(pathLine, {
-                    patterns: [{
-                        offset: '12%',
-                        repeat: '22%',
-                        symbol: L.Symbol.arrowHead({
-                            pixelSize: 10,
-                            polygon: false,
-                            pathOptions: { color: '#cc0809', weight: 1.5, opacity: 0.9 }
-                        })
-                    }]
-                }).addTo(map);
+            // Path fully drawn — add arrow at end of each segment
+            for (var j = 0; j < latlngs.length - 1; j++) {
+                var p1 = latlngs[j];
+                var p2 = latlngs[j + 1];
+                var ang = bearing(p1, p2);
+                var arrow = createArrowMarker(p2, ang);
+                arrow.addTo(map);
+                arrowMarkers.push(arrow);
             }
         }
     }
@@ -155,7 +171,7 @@ function goToStop(index) {
     // Update Movie Still
     if (stop.movieImg) {
         stillImages = Array.isArray(stop.movieImg) ? stop.movieImg : [stop.movieImg];
-        stillCaptions = Array.isArray(stop.movieImgCaption) ? stop.movieImgCaption : [stillCaptions[0] || ''];
+        stillCaptions = Array.isArray(stop.movieImgCaption) ? stop.movieImgCaption : [stop.movieImgCaption || ''];
         stillIndex = 0;
         showStill();
         sidebarStillSection.style.display = 'block';

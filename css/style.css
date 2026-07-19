@@ -430,6 +430,24 @@ main {
     100% { transform: translate(-50%, 50%) scale(3.5); opacity: 0; }
 }
 
+/* Route Directional Arrows */
+.route-arrow-container {
+    background: none !important;
+    border: none !important;
+}
+.route-arrow {
+    font-size: 12px;
+    color: #cc0809;
+    text-shadow: 0 0 4px rgba(0,0,0,0.8);
+    line-height: 1;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+}
+
 /* Active marker highlight ring */
 .marker-pin.active-marker .marker-emoji {
     box-shadow: 0 0 0 3px var(--accent-gold), 0 0 20px rgba(204, 8, 9, 0.3);
