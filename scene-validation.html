@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odyssey 2026 — Image Review Table</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding:20px;max-width:1400px;margin:0 auto}
+h1{color:#f5c518;font-size:1.5rem;margin-bottom:4px}
+.sub{color:#888;font-size:.85rem;margin-bottom:16px}
+.toolbar{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.toolbar button,.toolbar label{padding:8px 16px;border:none;border-radius:4px;cursor:pointer;font-size:.85rem}
+.btn-primary{background:#f5c518;color:#111;font-weight:700}
+.btn-primary:hover{background:#ffd633}
+.btn-secondary{background:#333;color:#e0e0e0}
+.btn-secondary:hover{background:#444}
+.btn-danger{background:#c0392b;color:#fff}
+.btn-danger:hover{background:#e74c3c}
+#searchInput{padding:8px 12px;background:#222;border:1px solid #444;color:#e0e0e0;border-radius:4px;min-width:200px;font-size:.85rem}
+#searchInput::placeholder{color:#666}
+.summary{font-size:.85rem;color:#aaa;margin-bottom:8px}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+thead{position:sticky;top:0;z-index:2}
+th{background:#1a1a1a;color:#f5c518;padding:10px 8px;text-align:left;font-weight:600;font-size:.8rem;border-bottom:2px solid #333;text-transform:uppercase;letter-spacing:.5px}
+th:nth-child(1){width:240px}
+th:nth-child(2){width:35%}
+th:nth-child(3){width:auto}
+td{padding:8px;border-bottom:1px solid #222;vertical-align:middle;font-size:.82rem}
+td.img-cell{text-align:center;background:#111}
+td.img-cell img{max-width:220px;max-height:140px;border-radius:4px;cursor:pointer;transition:transform .15s;display:block;margin:0 auto}
+td.img-cell img:hover{transform:scale(1.05)}
+td.img-cell .index-label{display:block;color:#666;font-size:.7rem;margin-top:2px}
+td.desc-cell textarea{width:100%;min-height:56px;padding:6px 8px;background:#1a1a1a;border:1px solid #333;color:#e0e0e0;border-radius:3px;font-size:.82rem;font-family:inherit;resize:vertical}
+td.desc-cell textarea:focus{outline:1px solid #f5c518;border-color:#f5c518}
+td.desc-cell textarea.my-desc{background:#111;border-color:#2a2a2a;color:#aaa;cursor:default}
+td.desc-cell textarea.my-desc:focus{outline:none;border-color:#2a2a2a}
+td.corr-cell textarea{width:100%;min-height:56px;padding:6px 8px;background:#0d0d0d;border:1px solid #555;color:#e0e0e0;border-radius:3px;font-size:.82rem;font-family:inherit;resize:vertical}
+td.corr-cell textarea:focus{outline:1px solid #f5c518;border-color:#f5c518}
+tr:hover td{background:#1a1a1a}
+tr:hover td.img-cell{background:#151515}
+tr.reviewed td{background:#1a2a1a}
+tr.reviewed td.corr-cell textarea{border-color:#2a5a2a}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.status-new{background:#f5c518}
+.status-known{background:#2ecc71}
+.status-unknown{background:#e67e22}
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.filter-btn{padding:4px 10px;border:1px solid #444;border-radius:12px;background:transparent;color:#aaa;cursor:pointer;font-size:.75rem}
+.filter-btn.active{background:#f5c518;color:#111;border-color:#f5c518;font-weight:600}
+@media(max-width:768px){th:nth-child(1){width:140px}td.img-cell img{max-width:120px;max-height:80px}}
+</style>
+</head>
+<body>
+
+<h1>&#x1F50D; Odyssey 2026 — Image Review Table</h1>
+<p class="sub">Review each image: check my description, then write your correction. Export when done.</p>
+
+<div class="toolbar">
+  <button type="button" class="btn-primary" onclick="exportJSON()">&#x2B07; Export Corrections (JSON)</button>
+  <button type="button" class="btn-secondary" onclick="exportCSV()">&#x2B07; Export CSV</button>
+  <button type="button" class="btn-secondary" onclick="clearAll()">&#x2716; Clear All Corrections</button>
+  <input type="text" id="searchInput" placeholder="Search images..." oninput="filterTable()">
+  <label style="color:#888;font-size:.8rem">
+    <input type="checkbox" onchange="toggleReviewedOnly()"> Reviewed only
+  </label>
+</div>
+
+<div class="filter-bar" id="filterBar"></div>
+
+<div class="summary" id="summary"></div>
+
+<table id="reviewTable">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>My Description</th>
+      <th>Your Correction</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
+
+<script>
+// ===================== IMAGE DATA =====================
+const images = [
+  // --- SECTION A: Local widescreen stills (images/stills/imdb_*.jpg) ---
+  { id:'imdb-1',    src:'images/stills/imdb_1.jpg',    alt:'IMDb still #1',      desc:'Underworld — Odysseus in Hades (confirmed: Universal image1.jpg)' },
+  { id:'imdb-257',  src:'images/stills/imdb_257.jpg',  alt:'IMDb still #257',    desc:'Circe — Odysseus arrives on Aeaea' },
+  { id:'imdb-258',  src:'images/stills/imdb_258.jpg',  alt:'IMDb still #258',    desc:'Scylla/Charybdis — approaching the deadly strait' },
+  { id:'imdb-265',  src:'images/stills/imdb_265.jpg',  alt:'IMDb still #265',    desc:'Troy — the city in flames at night' },
+  { id:'imdb-266',  src:'images/stills/imdb_266.jpg',  alt:'IMDb still #266',    desc:'Widescreen still — needs identification' },
+  { id:'imdb-300',  src:'images/stills/imdb_300.jpg',  alt:'IMDb still #300',    desc:'Troy — aftermath of war, bodies on battlefield' },
+  { id:'imdb-301',  src:'images/stills/imdb_301.jpg',  alt:'IMDb still #301',    desc:'Widescreen still — needs identification' },
+  { id:'imdb-302',  src:'images/stills/imdb_302.jpg',  alt:'IMDb still #302',    desc:'Widescreen still — needs identification' },
+  { id:'imdb-303',  src:'images/stills/imdb_303.jpg',  alt:'IMDb still #303',    desc:'Widescreen still — needs identification' },
+  { id:'imdb-304',  src:'images/stills/imdb_304.jpg',  alt:'IMDb still #304',    desc:'Thrinacia — storm/lightning after the cattle are eaten' },
+  { id:'imdb-307',  src:'images/stills/imdb_307.jpg',  alt:'IMDb still #307',    desc:'Widescreen still — needs identification' },
+  { id:'imdb-308',  src:'images/stills/imdb_308.jpg',  alt:'IMDb still #308',    desc:'Widescreen still — needs identification' },
+  { id:'imdb-309',  src:'images/stills/imdb_309.jpg',  alt:'IMDb still #309',    desc:'Widescreen still — needs identification' },
+  { id:'imdb-310',  src:'images/stills/imdb_310.jpg',  alt:'IMDb still #310',    desc:'Aeolus — crew rowing toward the island of Aeolia' },
+  { id:'imdb-311',  src:'images/stills/imdb_311.jpg',  alt:'IMDb still #311',    desc:'Widescreen still — needs identification (near Aeolus block)' },
+  { id:'imdb-312',  src:'images/stills/imdb_312.jpg',  alt:'IMDb still #312',    desc:'Widescreen still — needs identification (near Aeolus block)' },
+  { id:'imdb-319',  src:'images/stills/imdb_319.jpg',  alt:'IMDb still #319',    desc:'Widescreen still — needs identification' },
+  { id:'imdb-320',  src:'images/stills/imdb_320.jpg',  alt:'IMDb still #320',    desc:'Widescreen still — needs identification' },
+  { id:'imdb-325',  src:'images/stills/imdb_325.jpg',  alt:'IMDb still #325',    desc:'Widescreen still — needs identification (near Phaeacia block)' },
+  { id:'imdb-326',  src:'images/stills/imdb_326.jpg',  alt:'IMDb still #326',    desc:'Phaeacia — Odysseus with Athena on Scheria beach' },
+  { id:'imdb-327',  src:'images/stills/imdb_327.jpg',  alt:'IMDb still #327',    desc:'Widescreen still — needs identification (near Phaeacia block)' },
+  { id:'imdb-329',  src:'images/stills/imdb_329.jpg',  alt:'IMDb still #329',    desc:'Widescreen still — needs identification (near Ithaca block)' },
+  { id:'imdb-330',  src:'images/stills/imdb_330.jpg',  alt:'IMDb still #330',    desc:'Widescreen still — needs identification (near Ithaca block)' },
+  { id:'imdb-331',  src:'images/stills/imdb_331.jpg',  alt:'IMDb still #331',    desc:'Ithaca — Tom Holland as Telemachus' },
+  { id:'imdb-333',  src:'images/stills/imdb_333.jpg',  alt:'IMDb still #333',    desc:'Ithaca — Anne Hathaway as Penelope with the bow' },
+  { id:'imdb-336',  src:'images/stills/imdb_336.jpg',  alt:'IMDb still #336',    desc:'Troy — the Trojan Horse' },
+  { id:'imdb-339',  src:'images/stills/imdb_339.jpg',  alt:'IMDb still #339',    desc:'Widescreen still — needs identification (could be BTS/cast)' },
+  { id:'imdb-349',  src:'images/stills/imdb_349.jpg',  alt:'IMDb still #349',    desc:'Scylla/Charybdis — navigating the strait' },
+  { id:'imdb-350',  src:'images/stills/imdb_350.jpg',  alt:'IMDb still #350',    desc:'Widescreen still — needs identification (could be BTS/cast)' },
+  { id:'imdb-352',  src:'images/stills/imdb_352.jpg',  alt:'IMDb still #352',    desc:'Widescreen still — needs identification (could be BTS/cast)' },
+  { id:'imdb-353',  src:'images/stills/imdb_353.jpg',  alt:'IMDb still #353',    desc:'Widescreen still — needs identification (could be BTS/cast)' },
+  { id:'imdb-394',  src:'images/stills/imdb_394.jpg',  alt:'IMDb still #394',    desc:'Widescreen still — needs identification (later indices may be event/cast)' },
+  { id:'imdb-395',  src:'images/stills/imdb_395.jpg',  alt:'IMDb still #395',    desc:'Widescreen still — needs identification (later indices may be event/cast)' },
+  { id:'imdb-426',  src:'images/stills/imdb_426.jpg',  alt:'IMDb still #426',    desc:'Poster/artwork — end of IMDb gallery, likely marketing poster' },
+
+  // --- SECTION B: Universal Pictures CDN (official press stills) ---
+  { id:'universal-image1',  src:'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image1.jpg',  alt:'Universal image1.jpg',    desc:'Underworld — Matt Damon as Odysseus in Hades (user confirmed)' },
+  { id:'universal-image4',  src:'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image4.jpg',  alt:'Universal image4.jpg',    desc:'Troy — Greek soldiers at Troy (user confirmed as Troy)' },
+  { id:'universal-image5',  src:'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image5.jpg',  alt:'Universal image5.jpg',    desc:'Cyclops — Odysseus battles Polyphemus' },
+  { id:'universal-image6',  src:'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image6.jpg',  alt:'Universal image6.jpg',    desc:'Cyclops — entrance of the Cyclops\' cave' },
+  { id:'universal-image7',  src:'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image7.jpg',  alt:'Universal image7.jpg',    desc:'Cicones/Ismarus — Greek vs Greek battle (user confirmed)' },
+  { id:'universal-image_giants',  src:'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image_giants.jpg',  alt:'Universal image_giants.jpg',  desc:'Laestrygonians — giants attacking ships (user confirmed)' },
+
+  // --- SECTION C: Additional IMDb images from data.js (not in local stills) ---
+  { id:'imdb-6',    src:'https://m.media-amazon.com/images/M/MV5BOTlkNGQ0MWMtOGQyMC00MWJlLWI5NDItMDM4MmVhZWRiZjA4XkEyXkFqcGc@._V1',  alt:'IMDb #6',  desc:'Ithaca — Odysseus returns (assigned to Ithaca stop)' },
+  { id:'imdb-7',    src:'https://m.media-amazon.com/images/M/MV5BMzM0Nzc5OTgtN2YxMC00MzM0LTkwNDYtZGQ2ODFlMjhmZTM4XkEyXkFqcGc@._V1',  alt:'IMDb #7',  desc:'Calypso — on Ogygia (assigned to Calypso stop)' },
+  { id:'imdb-13',   src:'https://m.media-amazon.com/images/M/MV5BNDhiMWZiYzEtYWI1My00OTgxLTg1MTEtZTg0YzdiZDYzYjdjXkEyXkFqcGc@._V1',  alt:'IMDb #13', desc:'Circe — Aeaea island (assigned to Circe stop)' },
+  { id:'imdb-16',   src:'https://m.media-amazon.com/images/M/MV5BYWVjN2Q5NGYtMWIwYy00MzU2LTk1Y2ItY2U5MzQ0ZWZjY2Y1XkEyXkFqcGc@._V1',  alt:'IMDb #16', desc:'Calypso — on Ogygia (assigned to Calypso stop)' },
+  { id:'imdb-21',   src:'https://m.media-amazon.com/images/M/MV5BNmQyYzM0ZTgtZWJhMC00ODNhLThlMmQtZGZlZjIwZGIwYTMzXkEyXkFqcGc@._V1',  alt:'IMDb #21', desc:'Thrinacia — Cattle of Helios (assigned to Thrinacia stop)' },
+  { id:'imdb-259',  src:'https://m.media-amazon.com/images/M/MV5BODViMWM3N2YtYWFiYy00OWU5LThmYWYtMmEwOTI5ZDMyNDViXkEyXkFqcGc@._V1',  alt:'IMDb #259', desc:'Aeolus — fortress of the wind god (assigned to Aeolus stop)' },
+  { id:'imdb-280',  src:'https://m.media-amazon.com/images/M/MV5BYjZlOTNjNmQtZGMwMS00YzVmLTgyMGItNGVkNjdhMGMyZDZmXkEyXkFqcGc@._V1',  alt:'IMDb #280', desc:'Troy — Greek soldiers (assigned to Troy stop)' },
+  { id:'imdb-281',  src:'https://m.media-amazon.com/images/M/MV5BOWVlNzQ2NjktZjRmNy00ZjVlLTg5MDUtYTUxNmM5NGJlMzJmXkEyXkFqcGc@._V1',  alt:'IMDb #281', desc:'Troy — sack of Troy (assigned to Troy stop)' },
+  { id:'imdb-285',  src:'https://m.media-amazon.com/images/M/MV5BMzJmODU5ZTktZjAxZC00YTc1LTlhMDgtYjc5NWZiMjUzNDMxXkEyXkFqcGc@._V1',  alt:'IMDb #285', desc:'Aeolus — domain of the wind god (assigned to Aeolus stop)' },
+  { id:'imdb-317',  src:'https://m.media-amazon.com/images/M/MV5BMDhjNWEzMzUtZDAyNi00ODFmLWFkNjYtNWZmZjgxZjI2NDA5XkEyXkFqcGc@._V1',  alt:'IMDb #317', desc:'Scylla/Charybdis — the whirlpool of Charybdis (assigned)' },
+  { id:'imdb-334',  src:'https://m.media-amazon.com/images/M/MV5BYjZjZjg1YjUtMWUzNi00ZDBiLWE5MDctM2NiNzcwZmRmNWY5XkEyXkFqcGc@._V1',  alt:'IMDb #334', desc:'Calypso — Ogygia island (assigned to Calypso stop)' },
+  { id:'imdb-335',  src:'https://m.media-amazon.com/images/M/MV5BY2I0NGNmM2QtOGE0Yi00YTIzLThlNWEtNmZhNDM3NmE0ZjBiXkEyXkFqcGc@._V1',  alt:'IMDb #335', desc:'Calypso — Ogygia island (assigned to Calypso stop)' },
+  { id:'imdb-354',  src:'https://m.media-amazon.com/images/M/MV5BZjdmYWYwYjgtYmZiMS00N2QzLTllOTQtODI0ZjgzYjQzMDllXkEyXkFqcGc@._V1',  alt:'IMDb #354', desc:'Calypso — Ogygia island (assigned to Calypso stop)' },
+
+  // --- SECTION D: New images from Britannica (librarian found) ---
+  { id:'britannica-1',  src:'https://cdn.britannica.com/84/280884-050-21B963FD/Publicity-The-Odyssey-2026-Directed-By-Christopher-Nolan-Starring-Matt-Damon.jpg',  alt:'Britannica still 1',  desc:'Matt Damon as Odysseus — publicity still, full armor' },
+  { id:'britannica-2',  src:'https://cdn.britannica.com/85/280885-050-1B83FBB3/The-Odyssey-2026-Directed-By-Christopher-Nolan-Starring-Matt-Damon-Odysseus.jpg',  alt:'Britannica still 2',  desc:'Matt Damon as Odysseus — publicity still, plumed helmet' },
+];
+
+// ===================== TABLE RENDERING =====================
+let corrections = {};  // id -> user's correction text
+let reviewedOnly = false;
+
+function renderTable() {
+  const tbody = document.getElementById('tableBody');
+  const query = (document.getElementById('searchInput').value || '').toLowerCase();
+  tbody.innerHTML = '';
+
+  let visibleCount = 0;
+  images.forEach(img => {
+    const hasCorrection = corrections[img.id] && corrections[img.id].trim();
+    if (reviewedOnly && !hasCorrection) return;
+    if (query && !img.id.toLowerCase().includes(query) && !img.desc.toLowerCase().includes(query)) return;
+
+    visibleCount++;
+    const tr = document.createElement('tr');
+    if (hasCorrection) tr.className = 'reviewed';
+
+    // Source label
+    const isLocal = img.id.startsWith('imdb-') && !img.src.includes('m.media-amazon.com');
+    const isUniversal = img.id.startsWith('universal');
+    const isBritannica = img.id.startsWith('britannica');
+    const isNewAmazon = img.id.startsWith('imdb-') && img.src.includes('m.media-amazon.com');
+    let label = '';
+    if (isLocal) label = 'IMDb local';
+    else if (isUniversal) label = 'Universal pic';
+    else if (isBritannica) label = 'Britannica';
+    else if (isNewAmazon) label = 'IMDb CDN';
+
+    // Status dot
+    const known = !img.desc.includes('needs identification');
+    const statusDotClass = known ? 'status-known' : 'status-unknown';
+
+    tr.innerHTML = `
+      <td class="img-cell">
+        <span class="status-dot ${statusDotClass}"></span>
+        <img src="${img.src}" alt="${img.alt}" loading="lazy" onerror="this.style.opacity='0.3'">
+        <span class="index-label">${img.id}${label ? ' &middot; ' + label : ''}</span>
+      </td>
+      <td class="desc-cell">
+        <textarea class="my-desc" readonly rows="2">${img.desc}</textarea>
+      </td>
+      <td class="corr-cell">
+        <textarea rows="2" placeholder="Write your correction here..." oninput="onCorrection(this, '${img.id}')">${corrections[img.id] || ''}</textarea>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  const total = images.length;
+  const reviewed = Object.keys(corrections).filter(k => corrections[k].trim()).length;
+  document.getElementById('summary').textContent =
+    `Showing ${visibleCount} of ${total} images | ${reviewed} reviewed`;
+  updateFilterBar();
+}
+
+function onCorrection(el, id) {
+  const value = el.value;
+  if (value.trim()) corrections[id] = value;
+  else delete corrections[id];
+  // Update just this row — no full re-render, no focus loss
+  const tr = el.closest('tr');
+  if (tr) tr.className = value.trim() ? 'reviewed' : '';
+  updateSummary();
+}
+
+function updateSummary() {
+  const total = images.length;
+  const visible = document.getElementById('tableBody').children.length;
+  const reviewed = Object.keys(corrections).filter(k => corrections[k].trim()).length;
+  document.getElementById('summary').textContent =
+    `Showing ${visible} of ${total} images | ${reviewed} reviewed`;
+}
+
+// ===================== FILTERS =====================
+function filterTable() { renderTable(); }
+function toggleReviewedOnly() {
+  reviewedOnly = !reviewedOnly;
+  renderTable();
+}
+
+// Source category filter
+const categories = ['all', 'local-stills', 'universal', 'imdb-cdn', 'britannica', 'unknown', 'known'];
+const catLabels = { 'all':'All', 'local-stills':'Local Stills', 'universal':'Universal', 'imdb-cdn':'IMDb CDN', 'britannica':'Britannica', 'unknown':'Unknown', 'known':'Known' };
+
+function updateFilterBar() {
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = categories.map(c =>
+    `<button class="filter-btn ${c === activeFilter ? 'active' : ''}" onclick="setFilter('${c}')">${catLabels[c]}</button>`
+  ).join('');
+}
+
+let activeFilter = 'all';
+
+function setFilter(cat) {
+  activeFilter = cat;
+  const tbody = document.getElementById('tableBody');
+  const rows = tbody.querySelectorAll('tr');
+  rows.forEach((row, i) => {
+    const img = images.find(img => img.id === (row.cells[0]?.querySelector('.index-label')?.textContent?.split('·')[0]?.trim()));
+    if (!img) { row.style.display = ''; return; }
+    const isLocal = img.id.startsWith('imdb-') && !img.src.includes('m.media-amazon.com');
+    const isUniversal = img.id.startsWith('universal');
+    const isBritannica = img.id.startsWith('britannica');
+    const isNewAmazon = img.id.startsWith('imdb-') && img.src.includes('m.media-amazon.com');
+    const known = !img.desc.includes('needs identification');
+
+    let show = true;
+    if (cat === 'local-stills') show = isLocal;
+    else if (cat === 'universal') show = isUniversal;
+    else if (cat === 'imdb-cdn') show = isNewAmazon;
+    else if (cat === 'britannica') show = isBritannica;
+    else if (cat === 'unknown') show = !known;
+    else if (cat === 'known') show = known;
+    row.style.display = show ? '' : 'none';
+  });
+  updateFilterBar();
+}
+
+// ===================== EXPORT =====================
+function exportJSON() {
+  const result = {};
+  images.forEach(img => {
+    const correction = corrections[img.id];
+    if (correction && correction.trim()) {
+      result[img.id] = {
+        my_description: img.desc,
+        correction: correction.trim()
+      };
+    }
+  });
+  const blob = new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' });
+  downloadBlob(blob, 'odyssey-image-corrections.json');
+}
+
+function exportCSV() {
+  let csv = 'id,my_description,correction\n';
+  images.forEach(img => {
+    const corr = (corrections[img.id] || '').replace(/"/g, '""');
+    const desc = img.desc.replace(/"/g, '""');
+    csv += `"${img.id}","${desc}","${corr}"\n`;
+  });
+  const blob = new Blob([csv], { type: 'text/csv' });
+  downloadBlob(blob, 'odyssey-image-corrections.csv');
+}
+
+function downloadBlob(blob, filename) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+function clearAll() {
+  if (!confirm('Clear all correction entries?')) return;
+  corrections = {};
+  renderTable();
+}
+
+// ===================== INIT =====================
+renderTable();
+</script>
+</body>
+</html>

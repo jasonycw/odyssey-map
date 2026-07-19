@@ -14,8 +14,32 @@ const journeyStops = [
             'Duration': '10 years of war',
             'Distance from Ithaca': '~700 km (sailing route)'
         },
-        movieImg: 'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image4.jpg',
-        movieImgCaption: 'The Trojan Horse looms over the battlefield — Christopher Nolan\'s The Odyssey (2026)',
+        movieImg: [
+            'https://m.media-amazon.com/images/M/MV5BN2Y1YWNiMDYtYTA3Zi00ZjBlLThlNWUtMzkzNDNhMzFlMTI3XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BYWZiMDAyZDItMWIzNC00YTRmLTlmZjEtMzUyZTcwNTZlZmViXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNjA1ZTg3NmItNDllNi00ZDljLWJmNTktMzRlYmU2NDJmMWRhXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BYjZlOTNjNmQtZGMwMS00YzVmLTgyMGItNGVkNjdhMGMyZDZmXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BOWVlNzQ2NjktZjRmNy00ZjVlLTg5MDUtYTUxNmM5NGJlMzJmXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BN2ZhODhiYzAtZjNjMS00OTJlLWFjN2MtMWRlMzZmM2E3NzRkXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BMjZmZjcwZTUtNjA2My00YzAzLWI2ZjQtZGJkNTY5YzFiYTFiXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BODI0ZDE0ZWMtYTc4Mi00ZjlhLTg2OTEtNzY5MTQwYzYyMTcxXkEyXkFqcGc@._V1',
+            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image4.jpg',
+            'https://cdn.britannica.com/84/280884-050-21B963FD/Publicity-The-Odyssey-2026-Directed-By-Christopher-Nolan-Starring-Matt-Damon.jpg',
+            'https://cdn.britannica.com/85/280885-050-1B83FBB3/The-Odyssey-2026-Directed-By-Christopher-Nolan-Starring-Matt-Damon-Odysseus.jpg'
+        ],
+        movieImgCaption: [
+            'The Trojan Horse being pulled into Troy — Christopher Nolan\'s The Odyssey (2026)',
+            'The aftermath of the Trojan War — Christopher Nolan\'s The Odyssey (2026)',
+            'The flames of Troy — Christopher Nolan\'s The Odyssey (2026)',
+            'Greek soldiers at the fall of Troy — Christopher Nolan\'s The Odyssey (2026)',
+            'The sack of Troy — Christopher Nolan\'s The Odyssey (2026)',
+            'Sinon being killed while gifting the Trojan Horse — Troy',
+            'King Menelaus looking at Odysseus after the fall of Troy',
+            'The grave after the Trojan War battle',
+            'Trojan War scene — official Universal Pictures still',
+            'Matt Damon as Odysseus at Troy — publicity still',
+            'Matt Damon as Odysseus at Troy — publicity still'
+        ],
         sources: [
             'Homer, Iliad, Books 1–24',
             'Homer, Odyssey, Book 8.499–520',
@@ -40,8 +64,8 @@ const journeyStops = [
             'Crew remaining': '~528 men',
             'Distance from Troy': '~180 km NE'
         },
-        movieImg: 'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image7.jpg',
-        movieImgCaption: 'Odysseus\'s crew battling the Cicones at Ismarus — Christopher Nolan\'s The Odyssey (2026)',
+        movieImg: [],
+        movieImgCaption: [],
         sources: [
             'Homer, Odyssey, Book 9.39–61',
             'Euripides, Rhesus (Cicones as Thracian allies of Troy)',
@@ -88,11 +112,9 @@ const journeyStops = [
             'Cave dimensions': 'Described as large enough for 600 sheep'
         },
         movieImg: [
-            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image5.jpg',
             'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image6.jpg'
         ],
         movieImgCaption: [
-            'Matt Damon as Odysseus battles Polyphemus — Christopher Nolan\'s The Odyssey (2026)',
             'Odysseus at the entrance of the Cyclops\' cave — Christopher Nolan\'s The Odyssey (2026)'
         ],
         sources: [
@@ -120,6 +142,16 @@ const journeyStops = [
             'Distance covered': '~1,300 km (to Ithaca and back)',
             'Close to home': 'Within sight of Ithaca\'s smoke'
         },
+        movieImg: [
+            'https://m.media-amazon.com/images/M/MV5BNDE5NDU4OTctNWI1OC00MjYwLWJmNGEtMzM1OTYyMGU4MzAwXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BODViMWM3N2YtYWFiYy00OWU5LThmYWYtMmEwOTI5ZDMyNDViXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BMzJmODU5ZTktZjAxZC00YTc1LTlhMDgtYjc5NWZiMjUzNDMxXkEyXkFqcGc@._V1'
+        ],
+        movieImgCaption: [
+            'Odysseus\'s crew rowing toward the island of Aeolia — Christopher Nolan\'s The Odyssey (2026)',
+            'The fortress of Aeolus, keeper of the winds — Christopher Nolan\'s The Odyssey (2026)',
+            'Aeolus\'s domain — Christopher Nolan\'s The Odyssey (2026)'
+        ],
         sources: [
             'Homer, Odyssey, Book 10.1–79',
             'Strabo, Geography, 6.2.10 (Lipari)',
@@ -144,8 +176,20 @@ const journeyStops = [
             'Ships destroyed': '11 of 12',
             'Death toll': 'Highest single-day loss of the journey'
         },
-        movieImg: 'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image_giants.jpg',
-        movieImgCaption: 'Matt Damon as Odysseus faces the Laestrygonian giants — Christopher Nolan\'s The Odyssey (2026)',
+        movieImg: [
+            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image_giants.jpg',
+            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image5.jpg',
+            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image7.jpg',
+            'https://m.media-amazon.com/images/M/MV5BNGQ4MDU1ZWMtM2JlOS00ZmI5LTllZmEtODVkYmU3ZDNiMzUzXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BMGNiY2U1MTgtOTM4Yi00MjQwLThkYzItOWZmNjYwNjU4NGZhXkEyXkFqcGc@._V1'
+        ],
+        movieImgCaption: [
+            'The Laestrygonian giants attacking Odysseus\'s fleet — Christopher Nolan\'s The Odyssey (2026)',
+            'Odysseus fighting the Laestrygonian giants — official Universal Pictures still',
+            'Odysseus\'s crew battling at Laestrygonians — official Universal Pictures still',
+            'The Laestrygonian attack — IMDb still',
+            'Laestrygonian battle scene — IMDb still'
+        ],
         sources: [
             'Homer, Odyssey, Book 10.80–132',
             'Strabo, Geography, 5.3.6 (Formia)',
@@ -170,6 +214,16 @@ const journeyStops = [
             'Duration': 'Longest single stop of the journey',
             'Moly herb': 'White flower with black root, given by Hermes'
         },
+        movieImg: [
+            'https://m.media-amazon.com/images/M/MV5BYzYyNWM5ZDktNjk2ZS00YzVlLThiZWMtMTQ3NDZhYzk4MGI5XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNDhiMWZiYzEtYWI1My00OTgxLTg1MTEtZTg0YzdiZDYzYjdjXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BZTBjNzRiNTgtOTIwNi00NzA1LWFjY2MtZDdkZTJlZDhlYTljXkEyXkFqcGc@._V1'
+        ],
+        movieImgCaption: [
+            'Odysseus waiting for his crew to return from Circe\'s palace — Christopher Nolan\'s The Odyssey (2026)',
+            'Circe\'s island of Aeaea — Christopher Nolan\'s The Odyssey (2026)',
+            'Circe and her island — IMDb still'
+        ],
         sources: [
             'Homer, Odyssey, Book 10.133–574',
             'Homer, Odyssey, Book 10.575–11.50 (Underworld preparation)',
@@ -195,8 +249,18 @@ const journeyStops = [
             'Crew remaining': '~42–50 men',
             'Dead encountered': 'Elpenor, Tiresias, Anticleia, Achilles, Agamemnon, Ajax, Minos, Orion, Tantalus, Sisyphus, Heracles'
         },
-        movieImg: 'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image1.jpg',
-        movieImgCaption: 'Matt Damon as Odysseus in the Underworld — Christopher Nolan\'s The Odyssey (2026)',
+        movieImg: [
+            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image1.jpg',
+            'https://m.media-amazon.com/images/M/MV5BMjBlYTBkZGUtOGUwMC00MDI5LWFhZjQtMzhkMzNhNjFjMGIxXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BYzFjZmZjYzEtYWFkZS00OGVkLWEwMTAtM2FlMWZhNWRkZjkwXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BYjVlNDQxNTUtZDExOS00NzY5LWEzOTktZGJiNDcyNTIxYjg4XkEyXkFqcGc@._V1'
+        ],
+        movieImgCaption: [
+            'Matt Damon as Odysseus in the Underworld — Christopher Nolan\'s The Odyssey (2026)',
+            'Odysseus\'s boat sailing toward the Underworld — IMDb still',
+            'Odysseus preparing to enter the Underworld — IMDb still',
+            'The Underworld — back of the king — IMDb still'
+        ],
         sources: [
             'Homer, Odyssey, Book 11.1–640',
             'Cicero, Tusculan Disputations, 1.16',
@@ -246,6 +310,16 @@ const journeyStops = [
             'Charybdis cycle': 'Thrice daily whirlpool',
             'Scylla\'s reach': 'Six heads from sea-level cave'
         },
+        movieImg: [
+            'https://m.media-amazon.com/images/M/MV5BMDhjNWEzMzUtZDAyNi00ODFmLWFkNjYtNWZmZjgxZjI2NDA5XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BM2RkMDA0OGItZGYwMi00OWNjLWJiNGMtMDg4MzFkMzVjNTg1XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BZDE1NTBkMDYtYmViZS00ODQxLWJjZWQtNmVkMjczMWJiN2ZmXkEyXkFqcGc@._V1'
+        ],
+        movieImgCaption: [
+            'The whirlpool of Charybdis — Christopher Nolan\'s The Odyssey (2026)',
+            'Navigating the perilous Strait of Messina — Christopher Nolan\'s The Odyssey (2026)',
+            'Odysseus approaches the deadly strait — Christopher Nolan\'s The Odyssey (2026)'
+        ],
         sources: [
             'Homer, Odyssey, Book 12.201–259',
             'Homer, Odyssey, Book 12.260–420',
@@ -272,6 +346,16 @@ const journeyStops = [
             'Days adrift': '9 days on makeshift raft',
             'Cattle of Helios': '7 herds of 50 (350 cattle total)'
         },
+        movieImg: [
+            'https://m.media-amazon.com/images/M/MV5BNmQyYzM0ZTgtZWJhMC00ODNhLThlMmQtZGZlZjIwZGIwYTMzXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNjM4ODdlZTItMTM2Zi00OTQ2LWEwMTUtYjU5YTUwZmNiZWE4XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BOGZiYmJjZmYtZDNlMy00NGEwLTk5ZGMtZjBiMDg5ZGFhNDY3XkEyXkFqcGc@._V1'
+        ],
+        movieImgCaption: [
+            'The Cattle of Helios on Thrinacia — Christopher Nolan\'s The Odyssey (2026)',
+            'The thunderbolt of Zeus destroys Odysseus\'s ship — Christopher Nolan\'s The Odyssey (2026)',
+            'Odysseus at the shore of Thrinacia after seeing the cattle have been eaten — IMDb still'
+        ],
         sources: [
             'Homer, Odyssey, Book 12.260–453',
             'Hesiod, Theogony, 956–962',
@@ -298,6 +382,20 @@ const journeyStops = [
             'Immortality offered': 'Yes — refused by Odysseus',
             'Craft built': 'Raft of 20 trees (oak, pine, alder, poplar, fir)'
         },
+        movieImg: [
+            'https://m.media-amazon.com/images/M/MV5BMzM0Nzc5OTgtN2YxMC00MzM0LTkwNDYtZGQ2ODFlMjhmZTM4XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BYWVjN2Q5NGYtMWIwYy00MzU2LTk1Y2ItY2U5MzQ0ZWZjY2Y1XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BYjZjZjg1YjUtMWUzNi00ZDBiLWE5MDctM2NiNzcwZmRmNWY5XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BY2I0NGNmM2QtOGE0Yi00YTIzLThlNWEtNmZhNDM3NmE0ZjBiXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BZjdmYWYwYjgtYmZiMS00N2QzLTllOTQtODI0ZjgzYjQzMDllXkEyXkFqcGc@._V1'
+        ],
+        movieImgCaption: [
+            'Calypso on Ogygia — Christopher Nolan\'s The Odyssey (2026)',
+            'Calypso on Ogygia — Christopher Nolan\'s The Odyssey (2026)',
+            'Calypso\'s island of Ogygia — Christopher Nolan\'s The Odyssey (2026)',
+            'Calypso on Ogygia — Christopher Nolan\'s The Odyssey (2026)',
+            'Calypso on Ogygia — Christopher Nolan\'s The Odyssey (2026)'
+        ],
         sources: [
             'Homer, Odyssey, Book 1.11–21',
             'Homer, Odyssey, Book 5.1–269',
@@ -324,6 +422,12 @@ const journeyStops = [
             'Gifts received': 'Bronze, gold, robes, food, wine',
             'Phaeacian ship': 'Magical — self-navigating, thought-reading'
         },
+        movieImg: [
+            'https://m.media-amazon.com/images/M/MV5BNDE5YjVmZDktMzcxMi00MjQ2LWExOTQtZTMxYjFlMmZhZTg0XkEyXkFqcGc@._V1'
+        ],
+        movieImgCaption: [
+            'Odysseus with Athena at Scheria — Christopher Nolan\'s The Odyssey (2026)'
+        ],
         sources: [
             'Homer, Odyssey, Book 6.1–331 (Nausicaa)',
             'Homer, Odyssey, Book 7.1–347 (Alcinous)',
@@ -341,8 +445,28 @@ const journeyStops = [
         icon: '\u{1F3E0}',
         description: 'Home at last after 20 years. Odysseus arrives in disguise, aided by Athena. With his son Telemachus, he infiltrates his own palace, strings his great bow (which only he can), and slaughters the 108 suitors who have been consuming his wealth and pressing Penelope to remarry.',
         detail: 'Ithaca (Ithaki, Greece) is the destination — and also the real test. The hero who defeated monsters and resisted goddesses must now reclaim his household. The second half of the Odyssey (Books 13–24) is a domestic epic: a father and son fighting for their home. The restoration is violent but necessary. Athena herself intervenes to stop the cycle of revenge.',
-        movieImg: 'https://sm.ign.com/t/ign_me/photo/default/ct-34089-msg-1777970654249_mkhn.1400.jpg',
-        movieImgCaption: 'Anne Hathaway as Penelope and Tom Holland as Telemachus in The Odyssey (2026)',
+        movieImg: [
+            'https://m.media-amazon.com/images/M/MV5BNzI1YTc2M2EtYjcwYi00ODE3LTljMTEtNGI5NzlmNjA5MjcyXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNjZhM2Q5NWYtZWY2Ni00ZmQ4LTgzOGEtMWI4MmM1Yzk1YWJhXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BOTlkNGQ0MWMtOGQyMC00MWJlLWI5NDItMDM4MmVhZWRiZjA4XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNGQzYWI3NzYtZGQ4NC00M2UwLWJiYjItMGJlYTc4M2IyYWFkXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNTUzNzAxYjQtODczNi00MzFlLWE5NTYtYTY4MGNlOWI5Mzc5XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BMjM4OWNiNzUtY2YzNS00NjIxLWFlZDYtNGUxNTdmMjQwYTIzXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNGNlZjY1NGMtNmNkNS00ZWJlLTg5NjMtYzNjYWQyNGM3MzVjXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNTQwNjEwNjktNzVkNi00NzM2LTk4MmUtZWU1MWNiYTljNmVmXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BMmIwN2Q5YjctODI3NS00OTM1LWI5ZTEtOGFlZWVkNzMxZWMyXkEyXkFqcGc@._V1'
+        ],
+        movieImgCaption: [
+            'Anne Hathaway as Penelope with the bow of Odysseus — Christopher Nolan\'s The Odyssey (2026)',
+            'Tom Holland as Telemachus in Ithaca — Christopher Nolan\'s The Odyssey (2026)',
+            'Scenes in Ithaca — Christopher Nolan\'s The Odyssey (2026)',
+            'The church of Ithaca — location still',
+            'Telemachus welcoming Odysseus in Ithaca',
+            'Odysseus walking back to Ithaca',
+            'Odysseus walking back to Ithaca',
+            'Scenes in Ithaca — IMDb still',
+            'Scenes in Ithaca — IMDb still'
+        ],
         period: 'c. 1164 BCE (20 years after departure)',
         region: 'Ithaki, Ionian Islands (modern Greece)',
         stats: {
