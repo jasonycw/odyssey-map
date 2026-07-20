@@ -23,26 +23,24 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BN2ZhODhiYzAtZjNjMS00OTJlLWFjN2MtMWRlMzZmM2E3NzRkXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BMjZmZjcwZTUtNjA2My00YzAzLWI2ZjQtZGJkNTY5YzFiYTFiXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BODI0ZDE0ZWMtYTc4Mi00ZjlhLTg2OTEtNzY5MTQwYzYyMTcxXkEyXkFqcGc@._V1',
-            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image4.jpg',
             'https://cdn.britannica.com/84/280884-050-21B963FD/Publicity-The-Odyssey-2026-Directed-By-Christopher-Nolan-Starring-Matt-Damon.jpg',
             'https://cdn.britannica.com/85/280885-050-1B83FBB3/The-Odyssey-2026-Directed-By-Christopher-Nolan-Starring-Matt-Damon-Odysseus.jpg',
             'https://m.media-amazon.com/images/M/MV5BZDA2YThhN2YtNGVkYi00MTYzLWJjNjEtYmI5ODFkZTgyNzQ1XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BYjU2ODQ2MmItOTA1OC00NWNkLTk3Y2UtMjJjYzBhODk0ZjUyXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'The Trojan Horse being pulled through the gates of Troy',
-            'Greek warriors standing among the ruins of the fallen city',
-            'Flames engulfing the city of Troy at night',
-            'Greek soldiers advancing through the burning streets',
-            'Survivors being led out of the devastated city',
-            'Sinon bound and beaten after revealing the Trojan Horse',
-            'Menelaus confronting Odysseus after the fall of Troy',
-            'Grave markers dotting the battlefield outside the city walls',
-            'Odysseus leading Greek troops through the conquered city',
-            'Odysseus standing alone amid the wreckage of Troy',
-            'Odysseus on the battlefield before departing for home',
-            'Greek soldiers maneuvering the Trojan Horse into position',
-            'The Greek generals planning the final assault on Troy'
+            'The Trojan Horse being dragged from the shore as riders look on',
+            'Greek warriors in the aftermath of battle outside the walls of Troy',
+            'Greek and Trojan warriors clashing in the burning streets of Troy',
+            'Greek soldiers storming the gates of Troy as the city burns',
+            'The Trojan Horse monument standing in the city at night',
+            'An exhausted Greek warrior resting amid the ruins of Troy',
+            'Odysseus and Menelaus in a tense confrontation before the army',
+            'The aftermath of the war — fallen soldiers dotting the battlefield',
+            'Odysseus standing guard by the ships on the beach of Troy',
+            'Odysseus walking through the ruins of Troy in his crested helmet',
+            'Odysseus inside the belly of the Trojan Horse, waiting in the darkness with his men',
+            'Greek soldiers pulling the giant wooden horse on rollers toward the gates of Troy'
         ],
         sources: [
             'Homer, Iliad, Books 1–24',
@@ -116,28 +114,26 @@ const journeyStops = [
             'Cave dimensions': 'Described as large enough for 600 sheep'
         },
         movieImg: [
-            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image6.jpg',
             'https://m.media-amazon.com/images/M/MV5BYTY2MTE0MGEtMmE0My00ZWRiLWJlMzMtYzYyNDYyMDMwYzhhXkEyXkFqcGc@._V1',
-            'https://m.media-amazon.com/images/M/MV5BNzE5YTNlOWMtMTUxNy00NWUyLTg4YTMtNTJjZDAwY2NiNDUxXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BMWY3NzdmY2UtNTliZC00MGZiLTk4ZjQtYTBiZDdiOGU1NGI5XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BZTkyNzM2ZjAtNGNjYy00M2Y4LTk1MDMtMTYzOGU2MzY2M2E2XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BZDFkODQ2NzUtZGZlZi00YjA0LWE5NTktZTI1NTA0NmFkZGFiXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BNGFjN2M1OTQtMzBjNC00YWUxLWIxMGYtNzNhY2IzYzEyZDBmXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BYzI0NjZhMWYtYzc0YS00ZjUyLWIwZGYtZGRlYTY2ODdlNWY5XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BNjVhNWVhNzItYTVkMi00NzVjLTlkMDQtYjYwMDBmODU4NjM5XkEyXkFqcGc@._V1',
-            'https://m.media-amazon.com/images/M/MV5BNGYyYmU5OWQtZDI4OC00NzMwLWE2ODUtMzMxNmIzNDY4MTI4XkEyXkFqcGc@._V1'
+            'https://m.media-amazon.com/images/M/MV5BNGYyYmU5OWQtZDI4OC00NzMwLWE2ODUtMzMxNmIzNDY4MTI4XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BY2M2MjZlMzgtOTQyNi00OWRiLWIzYzktYjI2ZWFjNWZlMGQzXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Odysseus approaching the entrance of the Cyclops\' cave',
-            'The Cyclops Polyphemus inside his cave with the sheep',
-            'Polyphemus blocking the cave entrance with a boulder',
-            'Odysseus offering wine to the drunken Polyphemus',
-            'Polyphemus collapsing in a drunken stupor',
-            'Odysseus and his men sharpening the stake to blind the Cyclops',
-            'Odysseus driving the heated stake into Polyphemus\'s eye',
-            'The blinded Polyphemus groping in agony inside the cave',
-            'Odysseus and his men escaping under the bellies of sheep',
-            'Odysseus shouting his name from the ship as Polyphemus hurls rocks'
+            'Odysseus and his men confronting the giant Cyclopes in the misty forest',
+            'Odysseus marching through the forest with his soldiers toward the island\'s interior',
+            'Odysseus venturing into the darkness of Polyphemus\' cave',
+            'A Greek soldier watching warily from inside the Cyclops\' cave',
+            'A lone figure standing at the threshold of the Cyclops\' cave',
+            'Odysseus and his men discovering the sheep inside the Cyclops\' cave',
+            'Greek soldiers cautiously exploring the torch-lit cave of Polyphemus',
+            'Odysseus and his men navigating deeper into the Cyclops\' cave',
+            'Polyphemus the Cyclops crouching in his cave lit from below by a small flame'
         ],
         sources: [
             'Homer, Odyssey, Book 9.105–566',
@@ -170,9 +166,9 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BMzJmODU5ZTktZjAxZC00YTc1LTlhMDgtYjc5NWZiMjUzNDMxXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Odysseus\'s crew rowing toward the island of Aeolia in rough seas',
-            'The fortress of Aeolus rising above the Aeolian Islands',
-            'Aeolus presenting the bag of winds to Odysseus at his palace'
+            'Odysseus\'s crew rowing with intense effort toward the island of Aeolia',
+            'Odysseus on the deck of his ship at twilight approaching Aeolus\'s island',
+            'Odysseus bracing against a violent storm at sea after the winds escape the bag'
         ],
         sources: [
             'Homer, Odyssey, Book 10.1–79',
@@ -199,22 +195,18 @@ const journeyStops = [
             'Death toll': 'Highest single-day loss of the journey'
         },
         movieImg: [
-            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image_giants.jpg',
-            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image5.jpg',
-            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image7.jpg',
             'https://m.media-amazon.com/images/M/MV5BNGQ4MDU1ZWMtM2JlOS00ZmI5LTllZmEtODVkYmU3ZDNiMzUzXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BMzJlYWFlOWYtNGRiYi00YTk0LTg4ZDAtZTFhZjA0NWEyNjJkXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BMGQ3ZjcxNjYtZmE4ZS00NDM0LWI2MGItYTgzYTM1MjQ5YzQwXkEyXkFqcGc@._V1',
-            'https://m.media-amazon.com/images/M/MV5BMDQwMDFlZWQtMDQyMy00OTgyLTkyZDctM2Q4NTA1ZThlMTg5XkEyXkFqcGc@._V1'
+            'https://m.media-amazon.com/images/M/MV5BMDQwMDFlZWQtMDQyMy00OTgyLTkyZDctM2Q4NTA1ZThlMTg5XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNzE5YTNlOWMtMTUxNy00NWUyLTg4YTMtNTJjZDAwY2NiNDUxXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'The Laestrygonian giants attacking Odysseus\'s fleet with boulders',
-            'Odysseus drawing his sword against the giant cannibals',
-            'Crew members fighting desperately against the Laestrygonians',
-            'The Laestrygonians hurling rocks from the cliffs onto the ships',
-            'Giant Laestrygonian figures standing atop the harbor cliffs',
-            'Shattered ships sinking in the harbor as giants attack',
-            'Odysseus\'s lone ship escaping the harbor while the others burn'
+            'Greek soldiers marching through the misty forest toward the Laestrygonian harbor',
+            'Odysseus\'s soldiers charging across the beach into battle with the giants',
+            'Greek warriors confronting the armored Laestrygonian giants in the forest',
+            'Odysseus advancing through the misty forest leading his soldiers toward the giants',
+            'Odysseus\'s crew fleeing in panic across the hillside toward the ships'
         ],
         sources: [
             'Homer, Odyssey, Book 10.80–132',
@@ -245,8 +237,8 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BZTBjNzRiNTgtOTIwNi00NzA1LWFjY2MtZDdkZTJlZDhlYTljXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Circe\'s island of Aeaea shrouded in mist',
-            'Circe standing at the entrance of her palace'
+            'Odysseus walking along the rocky coast of Aeaea carrying his bow',
+            'Circe praying or watching anxiously as Odysseus and his men approach her palace'
         ],
         sources: [
             'Homer, Odyssey, Book 10.133–574',
@@ -283,13 +275,13 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BYjJlZmM3YzMtZGUxNy00Y2Q4LThiN2MtYmVkOTlhZTk3MzQ3XkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Odysseus\'s boat sailing toward the misty shores of the Underworld',
-            'Odysseus preparing to enter the realm of the dead',
-            'The king of the dead enthroned in the Underworld',
-            'Souls of the dead gathered at the entrance to Hades',
-            'Odysseus among the shades of the departed heroes',
-            'The dark river Styx winding through the Underworld',
-            'The prophet Tiresias appearing to Odysseus in the Underworld'
+            'Odysseus standing on the ship as it approaches the misty shores of the Underworld',
+            'Odysseus preparing his armor before entering the realm of Hades',
+            'A warrior walking through the dark misty landscape of the Underworld as glowing embers drift through the air',
+            'Souls of the dead walking in single file across the desolate plains of the Underworld',
+            'Odysseus kneeling in the darkness as his men rest by a campfire',
+            'Odysseus gripping his sword in a fighting stance by the campfire in Hades',
+            'Odysseus observing the souls of the dead drifting through the dark terrain'
         ],
         sources: [
             'Homer, Odyssey, Book 11.1–640',
@@ -345,8 +337,8 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BZDE1NTBkMDYtYmViZS00ODQxLWJjZWQtNmVkMjczMWJiN2ZmXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Navigating the narrow strait between Scylla\'s cliff and Charybdis\'s whirlpool',
-            'Odysseus steering the ship past the jagged rocks of the strait'
+            'Odysseus\'s ship navigating through the choppy waters near a rocky cliff',
+            'A small sailing vessel caught in the massive whirlpool of Charybdis'
         ],
         sources: [
             'Homer, Odyssey, Book 12.201–259',
@@ -380,9 +372,9 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BOGZiYmJjZmYtZDNlMy00NGEwLTk5ZGMtZjBiMDg5ZGFhNDY3XkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'The sacred Cattle of Helios grazing on the fields of Thrinacia',
-            'Zeus\'s thunderbolt striking Odysseus\'s ship, shattering the hull',
-            'Odysseus washed ashore after the shipwreck, alone and devastated'
+            'Odysseus looking up with a tense expression on the island of Thrinacia',
+            'Odysseus shouting amid the chaos on the ship\'s deck as the storm hits',
+            'Odysseus and a woman in a somber moment on the shores of Thrinacia'
         ],
         sources: [
             'Homer, Odyssey, Book 12.260–453',
@@ -417,10 +409,10 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BZjdmYWYwYjgtYmZiMS00N2QzLTllOTQtODI0ZjgzYjQzMDllXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Calypso gazing out over the sea from her island of Ogygia',
-            'The lush shores and caves of Calypso\'s island paradise',
-            'Calypso approaching Odysseus on the beach of Ogygia',
-            'Odysseus sitting alone on the shore, longing for Ithaca'
+            'Odysseus and Calypso standing on the desolate shores of Ogygia',
+            'Calypso staring with a tense expression in her cave dwelling',
+            'Odysseus confronting Calypso on the beach of Ogygia',
+            'Calypso embracing Odysseus outside her cave dwelling'
         ],
         sources: [
             'Homer, Odyssey, Book 1.11–21',
@@ -452,7 +444,7 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BNDE5YjVmZDktMzcxMi00MjQ2LWExOTQtZTMxYjFlMmZhZTg0XkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Odysseus meeting Athena in disguise on the shores of Scheria'
+            'Odysseus washed ashore on the beach of Scheria as a woman watches from the shore'
         ],
         sources: [
             'Homer, Odyssey, Book 6.1–331 (Nausicaa)',
@@ -482,14 +474,14 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BMmIwN2Q5YjctODI3NS00OTM1LWI5ZTEtOGFlZWVkNzMxZWMyXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Telemachus standing in the palace of Ithaca, awaiting his father\'s return',
-            'The palace of Ithaca preparing for the suitors\' feast',
-            'The church of Ithaca on the hillside overlooking the sea',
-            'Telemachus welcoming the disguised Odysseus to the palace',
-            'Odysseus walking through the rugged terrain of Ithaca',
-            'Odysseus hiking the rocky paths of Ithaca toward the palace',
-            'The ruins of the palace courtyard in Ithaca',
-            'The great hall of the palace where Odysseus will confront the suitors'
+            'Telemachus standing in the dimly lit palace of Ithaca',
+            'Penelope holding Odysseus\'s bow in the palace as her handmaiden watches',
+            'The rocky coastline of Ithaca with figures gathering near a cave entrance',
+            'Telemachus standing in the palace courtyard at night',
+            'Odysseus and Telemachus looking toward the palace from the distant hills',
+            'The ancient fortress of Ithaca perched on the hillside',
+            'Telemachus watching the suitors from the shadows of the great hall',
+            'Telemachus listening intently in the crowded palace hall'
         ],
         period: 'c. 1164 BCE (20 years after departure)',
         region: 'Ithaki, Ionian Islands (modern Greece)',
