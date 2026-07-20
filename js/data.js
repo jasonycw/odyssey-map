@@ -436,7 +436,6 @@ const journeyStops = [
         description: 'Home at last after 20 years. Odysseus arrives in disguise, aided by Athena. With his son Telemachus, he infiltrates his own palace, strings his great bow (which only he can), and slaughters the 108 suitors who have been consuming his wealth and pressing Penelope to remarry.',
         detail: 'Ithaca (Ithaki, Greece) is the destination — and also the real test. The hero who defeated monsters and resisted goddesses must now reclaim his household. The second half of the Odyssey (Books 13–24) is a domestic epic: a father and son fighting for their home. The restoration is violent but necessary. Athena herself intervenes to stop the cycle of revenge.',
         movieImg: [
-            'https://m.media-amazon.com/images/M/MV5BNzI1YTc2M2EtYjcwYi00ODE3LTljMTEtNGI5NzlmNjA5MjcyXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BNjZhM2Q5NWYtZWY2Ni00ZmQ4LTgzOGEtMWI4MmM1Yzk1YWJhXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BOTlkNGQ0MWMtOGQyMC00MWJlLWI5NDItMDM4MmVhZWRiZjA4XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BNGQzYWI3NzYtZGQ4NC00M2UwLWJiYjItMGJlYTc4M2IyYWFkXkEyXkFqcGc@._V1',
@@ -447,7 +446,6 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BMmIwN2Q5YjctODI3NS00OTM1LWI5ZTEtOGFlZWVkNzMxZWMyXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Anne Hathaway as Penelope with the bow of Odysseus — Christopher Nolan\'s The Odyssey (2026)',
             'Tom Holland as Telemachus in Ithaca — Christopher Nolan\'s The Odyssey (2026)',
             'Scenes in Ithaca — Christopher Nolan\'s The Odyssey (2026)',
             'The church of Ithaca — location still',
