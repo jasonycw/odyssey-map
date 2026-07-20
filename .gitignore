@@ -1,3 +1,4 @@
 .playwright-mcp/
 python.exe.stackdump
 .sisyphus/
+tmp_imgs/
