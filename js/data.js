@@ -213,12 +213,10 @@ const journeyStops = [
             'Moly herb': 'White flower with black root, given by Hermes'
         },
         movieImg: [
-            'https://m.media-amazon.com/images/M/MV5BYzYyNWM5ZDktNjk2ZS00YzVlLThiZWMtMTQ3NDZhYzk4MGI5XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BNDhiMWZiYzEtYWI1My00OTgxLTg1MTEtZTg0YzdiZDYzYjdjXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BZTBjNzRiNTgtOTIwNi00NzA1LWFjY2MtZDdkZTJlZDhlYTljXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Odysseus waiting for his crew to return from Circe\'s palace — Christopher Nolan\'s The Odyssey (2026)',
             'Circe\'s island of Aeaea — Christopher Nolan\'s The Odyssey (2026)',
             'Circe and her island — IMDb still'
         ],
@@ -307,12 +305,10 @@ const journeyStops = [
             'Scylla\'s reach': 'Six heads from sea-level cave'
         },
         movieImg: [
-            'https://m.media-amazon.com/images/M/MV5BMDhjNWEzMzUtZDAyNi00ODFmLWFkNjYtNWZmZjgxZjI2NDA5XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BM2RkMDA0OGItZGYwMi00OWNjLWJiNGMtMDg4MzFkMzVjNTg1XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BZDE1NTBkMDYtYmViZS00ODQxLWJjZWQtNmVkMjczMWJiN2ZmXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'The whirlpool of Charybdis — Christopher Nolan\'s The Odyssey (2026)',
             'Navigating the perilous Strait of Messina — Christopher Nolan\'s The Odyssey (2026)',
             'Odysseus approaches the deadly strait — Christopher Nolan\'s The Odyssey (2026)'
         ],
