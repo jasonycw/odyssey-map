@@ -25,20 +25,24 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BODI0ZDE0ZWMtYTc4Mi00ZjlhLTg2OTEtNzY5MTQwYzYyMTcxXkEyXkFqcGc@._V1',
             'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image4.jpg',
             'https://cdn.britannica.com/84/280884-050-21B963FD/Publicity-The-Odyssey-2026-Directed-By-Christopher-Nolan-Starring-Matt-Damon.jpg',
-            'https://cdn.britannica.com/85/280885-050-1B83FBB3/The-Odyssey-2026-Directed-By-Christopher-Nolan-Starring-Matt-Damon-Odysseus.jpg'
+            'https://cdn.britannica.com/85/280885-050-1B83FBB3/The-Odyssey-2026-Directed-By-Christopher-Nolan-Starring-Matt-Damon-Odysseus.jpg',
+            'https://m.media-amazon.com/images/M/MV5BZDA2YThhN2YtNGVkYi00MTYzLWJjNjEtYmI5ODFkZTgyNzQ1XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BYjU2ODQ2MmItOTA1OC00NWNkLTk3Y2UtMjJjYzBhODk0ZjUyXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'The Trojan Horse being pulled into Troy — Christopher Nolan\'s The Odyssey (2026)',
-            'The aftermath of the Trojan War — Christopher Nolan\'s The Odyssey (2026)',
-            'The flames of Troy — Christopher Nolan\'s The Odyssey (2026)',
-            'Greek soldiers at the fall of Troy — Christopher Nolan\'s The Odyssey (2026)',
-            'The sack of Troy — Christopher Nolan\'s The Odyssey (2026)',
-            'Sinon being killed while gifting the Trojan Horse — Troy',
-            'King Menelaus looking at Odysseus after the fall of Troy',
-            'The grave after the Trojan War battle',
-            'Trojan War scene — official Universal Pictures still',
-            'Matt Damon as Odysseus at Troy — publicity still',
-            'Matt Damon as Odysseus at Troy — publicity still'
+            'The Trojan Horse being pulled through the gates of Troy',
+            'Greek warriors standing among the ruins of the fallen city',
+            'Flames engulfing the city of Troy at night',
+            'Greek soldiers advancing through the burning streets',
+            'Survivors being led out of the devastated city',
+            'Sinon bound and beaten after revealing the Trojan Horse',
+            'Menelaus confronting Odysseus after the fall of Troy',
+            'Grave markers dotting the battlefield outside the city walls',
+            'Odysseus leading Greek troops through the conquered city',
+            'Odysseus standing alone amid the wreckage of Troy',
+            'Odysseus on the battlefield before departing for home',
+            'Greek soldiers maneuvering the Trojan Horse into position',
+            'The Greek generals planning the final assault on Troy'
         ],
         sources: [
             'Homer, Iliad, Books 1–24',
@@ -112,10 +116,28 @@ const journeyStops = [
             'Cave dimensions': 'Described as large enough for 600 sheep'
         },
         movieImg: [
-            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image6.jpg'
+            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image6.jpg',
+            'https://m.media-amazon.com/images/M/MV5BYTY2MTE0MGEtMmE0My00ZWRiLWJlMzMtYzYyNDYyMDMwYzhhXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNzE5YTNlOWMtMTUxNy00NWUyLTg4YTMtNTJjZDAwY2NiNDUxXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BMWY3NzdmY2UtNTliZC00MGZiLTk4ZjQtYTBiZDdiOGU1NGI5XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BZTkyNzM2ZjAtNGNjYy00M2Y4LTk1MDMtMTYzOGU2MzY2M2E2XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BZDFkODQ2NzUtZGZlZi00YjA0LWE5NTktZTI1NTA0NmFkZGFiXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNGFjN2M1OTQtMzBjNC00YWUxLWIxMGYtNzNhY2IzYzEyZDBmXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BYzI0NjZhMWYtYzc0YS00ZjUyLWIwZGYtZGRlYTY2ODdlNWY5XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNjVhNWVhNzItYTVkMi00NzVjLTlkMDQtYjYwMDBmODU4NjM5XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BNGYyYmU5OWQtZDI4OC00NzMwLWE2ODUtMzMxNmIzNDY4MTI4XkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Odysseus at the entrance of the Cyclops\' cave — Christopher Nolan\'s The Odyssey (2026)'
+            'Odysseus approaching the entrance of the Cyclops\' cave',
+            'The Cyclops Polyphemus inside his cave with the sheep',
+            'Polyphemus blocking the cave entrance with a boulder',
+            'Odysseus offering wine to the drunken Polyphemus',
+            'Polyphemus collapsing in a drunken stupor',
+            'Odysseus and his men sharpening the stake to blind the Cyclops',
+            'Odysseus driving the heated stake into Polyphemus\'s eye',
+            'The blinded Polyphemus groping in agony inside the cave',
+            'Odysseus and his men escaping under the bellies of sheep',
+            'Odysseus shouting his name from the ship as Polyphemus hurls rocks'
         ],
         sources: [
             'Homer, Odyssey, Book 9.105–566',
@@ -148,9 +170,9 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BMzJmODU5ZTktZjAxZC00YTc1LTlhMDgtYjc5NWZiMjUzNDMxXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Odysseus\'s crew rowing toward the island of Aeolia — Christopher Nolan\'s The Odyssey (2026)',
-            'The fortress of Aeolus, keeper of the winds — Christopher Nolan\'s The Odyssey (2026)',
-            'Aeolus\'s domain — Christopher Nolan\'s The Odyssey (2026)'
+            'Odysseus\'s crew rowing toward the island of Aeolia in rough seas',
+            'The fortress of Aeolus rising above the Aeolian Islands',
+            'Aeolus presenting the bag of winds to Odysseus at his palace'
         ],
         sources: [
             'Homer, Odyssey, Book 10.1–79',
@@ -180,13 +202,19 @@ const journeyStops = [
             'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image_giants.jpg',
             'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image5.jpg',
             'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image7.jpg',
-            'https://m.media-amazon.com/images/M/MV5BNGQ4MDU1ZWMtM2JlOS00ZmI5LTllZmEtODVkYmU3ZDNiMzUzXkEyXkFqcGc@._V1'
+            'https://m.media-amazon.com/images/M/MV5BNGQ4MDU1ZWMtM2JlOS00ZmI5LTllZmEtODVkYmU3ZDNiMzUzXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BMzJlYWFlOWYtNGRiYi00YTk0LTg4ZDAtZTFhZjA0NWEyNjJkXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BMGQ3ZjcxNjYtZmE4ZS00NDM0LWI2MGItYTgzYTM1MjQ5YzQwXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BMDQwMDFlZWQtMDQyMy00OTgyLTkyZDctM2Q4NTA1ZThlMTg5XkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'The Laestrygonian giants attacking Odysseus\'s fleet — Christopher Nolan\'s The Odyssey (2026)',
-            'Odysseus fighting the Laestrygonian giants — official Universal Pictures still',
-            'Odysseus\'s crew battling at Laestrygonians — official Universal Pictures still',
-            'The Laestrygonian attack — IMDb still'
+            'The Laestrygonian giants attacking Odysseus\'s fleet with boulders',
+            'Odysseus drawing his sword against the giant cannibals',
+            'Crew members fighting desperately against the Laestrygonians',
+            'The Laestrygonians hurling rocks from the cliffs onto the ships',
+            'Giant Laestrygonian figures standing atop the harbor cliffs',
+            'Shattered ships sinking in the harbor as giants attack',
+            'Odysseus\'s lone ship escaping the harbor while the others burn'
         ],
         sources: [
             'Homer, Odyssey, Book 10.80–132',
@@ -217,8 +245,8 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BZTBjNzRiNTgtOTIwNi00NzA1LWFjY2MtZDdkZTJlZDhlYTljXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Circe\'s island of Aeaea — Christopher Nolan\'s The Odyssey (2026)',
-            'Circe and her island — IMDb still'
+            'Circe\'s island of Aeaea shrouded in mist',
+            'Circe standing at the entrance of her palace'
         ],
         sources: [
             'Homer, Odyssey, Book 10.133–574',
@@ -248,12 +276,20 @@ const journeyStops = [
         movieImg: [
             'https://m.media-amazon.com/images/M/MV5BMjBlYTBkZGUtOGUwMC00MDI5LWFhZjQtMzhkMzNhNjFjMGIxXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BYzFjZmZjYzEtYWFkZS00OGVkLWEwMTAtM2FlMWZhNWRkZjkwXkEyXkFqcGc@._V1',
-            'https://m.media-amazon.com/images/M/MV5BYjVlNDQxNTUtZDExOS00NzY5LWEzOTktZGJiNDcyNTIxYjg4XkEyXkFqcGc@._V1'
+            'https://m.media-amazon.com/images/M/MV5BYjVlNDQxNTUtZDExOS00NzY5LWEzOTktZGJiNDcyNTIxYjg4XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BYjYxZGExYjktYmI3OS00ZTliLTk3ZTItOThlMzBkMTBkNTEyXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BMjQ0ODM2NmYtZGZkZC00NWUzLTllZTMtNzdlMDRmYmJkNmIzXkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BY2FhN2RlYTQtODc0MC00ODM5LTgyYzctZmQxYzQ3MDMwMDY0XkEyXkFqcGc@._V1',
+            'https://m.media-amazon.com/images/M/MV5BYjJlZmM3YzMtZGUxNy00Y2Q4LThiN2MtYmVkOTlhZTk3MzQ3XkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Odysseus\'s boat sailing toward the Underworld — IMDb still',
-            'Odysseus preparing to enter the Underworld — IMDb still',
-            'The Underworld — back of the king — IMDb still'
+            'Odysseus\'s boat sailing toward the misty shores of the Underworld',
+            'Odysseus preparing to enter the realm of the dead',
+            'The king of the dead enthroned in the Underworld',
+            'Souls of the dead gathered at the entrance to Hades',
+            'Odysseus among the shades of the departed heroes',
+            'The dark river Styx winding through the Underworld',
+            'The prophet Tiresias appearing to Odysseus in the Underworld'
         ],
         sources: [
             'Homer, Odyssey, Book 11.1–640',
@@ -309,8 +345,8 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BZDE1NTBkMDYtYmViZS00ODQxLWJjZWQtNmVkMjczMWJiN2ZmXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Navigating the perilous Strait of Messina — Christopher Nolan\'s The Odyssey (2026)',
-            'Odysseus approaches the deadly strait — Christopher Nolan\'s The Odyssey (2026)'
+            'Navigating the narrow strait between Scylla\'s cliff and Charybdis\'s whirlpool',
+            'Odysseus steering the ship past the jagged rocks of the strait'
         ],
         sources: [
             'Homer, Odyssey, Book 12.201–259',
@@ -344,9 +380,9 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BOGZiYmJjZmYtZDNlMy00NGEwLTk5ZGMtZjBiMDg5ZGFhNDY3XkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'The Cattle of Helios on Thrinacia — Christopher Nolan\'s The Odyssey (2026)',
-            'The thunderbolt of Zeus destroys Odysseus\'s ship — Christopher Nolan\'s The Odyssey (2026)',
-            'Odysseus at the shore of Thrinacia after seeing the cattle have been eaten — IMDb still'
+            'The sacred Cattle of Helios grazing on the fields of Thrinacia',
+            'Zeus\'s thunderbolt striking Odysseus\'s ship, shattering the hull',
+            'Odysseus washed ashore after the shipwreck, alone and devastated'
         ],
         sources: [
             'Homer, Odyssey, Book 12.260–453',
@@ -381,10 +417,10 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BZjdmYWYwYjgtYmZiMS00N2QzLTllOTQtODI0ZjgzYjQzMDllXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Calypso on Ogygia — Christopher Nolan\'s The Odyssey (2026)',
-            'Calypso\'s island of Ogygia — Christopher Nolan\'s The Odyssey (2026)',
-            'Calypso on Ogygia — Christopher Nolan\'s The Odyssey (2026)',
-            'Calypso on Ogygia — Christopher Nolan\'s The Odyssey (2026)'
+            'Calypso gazing out over the sea from her island of Ogygia',
+            'The lush shores and caves of Calypso\'s island paradise',
+            'Calypso approaching Odysseus on the beach of Ogygia',
+            'Odysseus sitting alone on the shore, longing for Ithaca'
         ],
         sources: [
             'Homer, Odyssey, Book 1.11–21',
@@ -416,7 +452,7 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BNDE5YjVmZDktMzcxMi00MjQ2LWExOTQtZTMxYjFlMmZhZTg0XkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Odysseus with Athena at Scheria — Christopher Nolan\'s The Odyssey (2026)'
+            'Odysseus meeting Athena in disguise on the shores of Scheria'
         ],
         sources: [
             'Homer, Odyssey, Book 6.1–331 (Nausicaa)',
@@ -446,14 +482,14 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BMmIwN2Q5YjctODI3NS00OTM1LWI5ZTEtOGFlZWVkNzMxZWMyXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Tom Holland as Telemachus in Ithaca — Christopher Nolan\'s The Odyssey (2026)',
-            'Scenes in Ithaca — Christopher Nolan\'s The Odyssey (2026)',
-            'The church of Ithaca — location still',
-            'Telemachus welcoming Odysseus in Ithaca',
-            'Odysseus walking back to Ithaca',
-            'Odysseus walking back to Ithaca',
-            'Scenes in Ithaca — IMDb still',
-            'Scenes in Ithaca — IMDb still'
+            'Telemachus standing in the palace of Ithaca, awaiting his father\'s return',
+            'The palace of Ithaca preparing for the suitors\' feast',
+            'The church of Ithaca on the hillside overlooking the sea',
+            'Telemachus welcoming the disguised Odysseus to the palace',
+            'Odysseus walking through the rugged terrain of Ithaca',
+            'Odysseus hiking the rocky paths of Ithaca toward the palace',
+            'The ruins of the palace courtyard in Ithaca',
+            'The great hall of the palace where Odysseus will confront the suitors'
         ],
         period: 'c. 1164 BCE (20 years after departure)',
         region: 'Ithaki, Ionian Islands (modern Greece)',
