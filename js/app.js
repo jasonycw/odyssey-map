@@ -18,8 +18,7 @@ const map = L.map('map', {
     zoomControl: false,
     attributionControl: false,
     minZoom: 4,
-    maxBounds: mapBounds,
-    maxBoundsViscosity: 1.0
+    maxBounds: mapBounds
 }).setView([38.0, 18.0], 5);
 
 // Dark Tiles
