@@ -180,15 +180,13 @@ const journeyStops = [
             'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image_giants.jpg',
             'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image5.jpg',
             'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image7.jpg',
-            'https://m.media-amazon.com/images/M/MV5BNGQ4MDU1ZWMtM2JlOS00ZmI5LTllZmEtODVkYmU3ZDNiMzUzXkEyXkFqcGc@._V1',
-            'https://m.media-amazon.com/images/M/MV5BMGNiY2U1MTgtOTM4Yi00MjQwLThkYzItOWZmNjYwNjU4NGZhXkEyXkFqcGc@._V1'
+            'https://m.media-amazon.com/images/M/MV5BNGQ4MDU1ZWMtM2JlOS00ZmI5LTllZmEtODVkYmU3ZDNiMzUzXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
             'The Laestrygonian giants attacking Odysseus\'s fleet — Christopher Nolan\'s The Odyssey (2026)',
             'Odysseus fighting the Laestrygonian giants — official Universal Pictures still',
             'Odysseus\'s crew battling at Laestrygonians — official Universal Pictures still',
-            'The Laestrygonian attack — IMDb still',
-            'Laestrygonian battle scene — IMDb still'
+            'The Laestrygonian attack — IMDb still'
         ],
         sources: [
             'Homer, Odyssey, Book 10.80–132',
