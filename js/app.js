@@ -322,30 +322,6 @@ sidebarEl.addEventListener('touchmove', function (e) {
     }
 }, { passive: true });
 
-// Mobile: move controls from sidebar header to timeline
-(function() {
-    var controlsEl = document.getElementById('controls');
-    var timelineControls = document.getElementById('timeline-controls');
-    var origParent = controlsEl ? controlsEl.parentNode : null;
-    function moveControls() {
-        if (!controlsEl || !timelineControls) return;
-        if (window.innerWidth <= 768) {
-            // Move to timeline
-            if (controlsEl.parentNode !== timelineControls) {
-                timelineControls.appendChild(controlsEl);
-            }
-        } else {
-            // Move back to sidebar header (before the placeholder)
-            if (controlsEl.parentNode === timelineControls) {
-                var infoHeaderEl = document.querySelector('.info-header');
-                if (infoHeaderEl) infoHeaderEl.appendChild(controlsEl);
-            }
-        }
-    }
-    moveControls();
-    window.addEventListener('resize', moveControls);
-})();
-
 // Still Carousel
 function showStill() {
     if (stillIndex < 0) stillIndex = 0;
