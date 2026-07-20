@@ -40,7 +40,7 @@ const journeyStops = [
             'Odysseus standing guard by the ships on the beach of Troy',
             'Odysseus walking through the ruins of Troy in his crested helmet',
             'Odysseus inside the belly of the Trojan Horse, waiting in the darkness with his men',
-            'Greek soldiers pulling the giant wooden horse on rollers toward the gates of Troy'
+            'Greek soldiers hauling a siege engine on rollers toward the fortress of Troy'
         ],
         sources: [
             'Homer, Iliad, Books 1–24',
