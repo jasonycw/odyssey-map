@@ -1,6 +1,5 @@
 let currentIndex = 0;
-let isPlaying = false;
-let playInterval = null;
+
 
 // State
 const markers = [];
@@ -51,7 +50,6 @@ const progressFill = document.getElementById('progress-fill');
 const progressText = document.getElementById('progress-text');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
-const autoplayBtn = document.getElementById('autoplay-btn');
 
 // Custom Marker Function — Pin-shaped with clear anchor point
 function createCustomMarker(stop, index) {
@@ -257,8 +255,6 @@ function goToStop(index) {
 function nextStop() {
     if (currentIndex < journeyStops.length - 1) {
         goToStop(currentIndex + 1);
-    } else {
-        stopAutoplay();
     }
 }
 
@@ -266,28 +262,6 @@ function prevStop() {
     if (currentIndex > 0) {
         goToStop(currentIndex - 1);
     }
-}
-
-function toggleAutoplay() {
-    if (isPlaying) {
-        stopAutoplay();
-    } else {
-        startAutoplay();
-    }
-}
-
-function startAutoplay() {
-    isPlaying = true;
-    autoplayBtn.innerText = '⏸';
-    autoplayBtn.classList.add('playing');
-    playInterval = setInterval(nextStop, 5000);
-}
-
-function stopAutoplay() {
-    isPlaying = false;
-    autoplayBtn.innerText = '▶';
-    autoplayBtn.classList.remove('playing');
-    clearInterval(playInterval);
 }
 
 // Intro Overlay
@@ -328,29 +302,6 @@ sidebarEl.addEventListener('touchmove', function (e) {
         }
     }
 }, { passive: true });
-
-// Reposition controls: sidebar on mobile, timeline on desktop
-(function() {
-    var ctrls = document.getElementById('sidebar-controls');
-    var tlSpot = document.getElementById('timeline-controls');
-    var sidebarHeader = document.querySelector('.info-header');
-    function reposition() {
-        if (!ctrls || !tlSpot || !sidebarHeader) return;
-        if (window.innerWidth <= 768) {
-            // Mobile: keep in sidebar (after info-header)
-            if (ctrls.parentNode !== sidebarHeader.parentNode) {
-                sidebarHeader.parentNode.insertBefore(ctrls, sidebarHeader.nextSibling);
-            }
-        } else {
-            // Desktop: move to timeline
-            if (ctrls.parentNode !== tlSpot) {
-                tlSpot.appendChild(ctrls);
-            }
-        }
-    }
-    reposition();
-    window.addEventListener('resize', reposition);
-})();
 
 // Still Carousel
 function showStill() {
@@ -440,7 +391,6 @@ stillNext.addEventListener('click', function () {
 // Event Listeners
 prevBtn.addEventListener('click', prevStop);
 nextBtn.addEventListener('click', nextStop);
-autoplayBtn.addEventListener('click', toggleAutoplay);
 
 // Start
 window.onload = init;
