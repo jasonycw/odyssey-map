@@ -11,8 +11,8 @@ let stillCaptions = [];
 
 // Initialize Map
 var mapBounds = L.latLngBounds(
-    [30, 0],   // southwest — North Africa, Atlantic
-    [46, 32]   // northeast — Central Europe, Turkey
+    [20, -20],  // southwest — plenty of room around all stops
+    [55, 45]    // northeast — covers all of Europe + buffer
 );
 const map = L.map('map', {
     zoomControl: false,
