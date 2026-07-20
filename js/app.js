@@ -10,15 +10,9 @@ let stillImages = [];
 let stillCaptions = [];
 
 // Initialize Map
-var mapBounds = L.latLngBounds(
-    [20, -20],  // southwest — plenty of room around all stops
-    [55, 45]    // northeast — covers all of Europe + buffer
-);
 const map = L.map('map', {
     zoomControl: false,
-    attributionControl: false,
-    minZoom: 4,
-    maxBounds: mapBounds
+    attributionControl: false
 }).setView([38.0, 18.0], 5);
 
 // Dark Tiles
