@@ -425,6 +425,7 @@ main {
 .route-arrow-container {
     background: none !important;
     border: none !important;
+    box-shadow: none !important;
 }
 .route-arrow {
     font-size: 12px;
@@ -435,8 +436,8 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.9;
-    /* ponytail: no shadow — arrow should read as tip of the line, not a floating icon */
+    text-shadow: none;
+    filter: none;
 }
 
 /* Active marker highlight ring */

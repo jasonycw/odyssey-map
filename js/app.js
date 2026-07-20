@@ -12,7 +12,9 @@ let stillCaptions = [];
 // Initialize Map
 const map = L.map('map', {
     zoomControl: false,
-    attributionControl: false
+    attributionControl: false,
+    minZoom: 4,
+    worldCopyJump: true
 }).setView([38.0, 18.0], 5);
 
 // Dark Tiles
