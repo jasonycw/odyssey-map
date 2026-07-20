@@ -376,13 +376,11 @@ const journeyStops = [
         },
         movieImg: [
             'https://m.media-amazon.com/images/M/MV5BMzM0Nzc5OTgtN2YxMC00MzM0LTkwNDYtZGQ2ODFlMjhmZTM4XkEyXkFqcGc@._V1',
-            'https://m.media-amazon.com/images/M/MV5BYWVjN2Q5NGYtMWIwYy00MzU2LTk1Y2ItY2U5MzQ0ZWZjY2Y1XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BYjZjZjg1YjUtMWUzNi00ZDBiLWE5MDctM2NiNzcwZmRmNWY5XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BY2I0NGNmM2QtOGE0Yi00YTIzLThlNWEtNmZhNDM3NmE0ZjBiXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BZjdmYWYwYjgtYmZiMS00N2QzLTllOTQtODI0ZjgzYjQzMDllXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Calypso on Ogygia — Christopher Nolan\'s The Odyssey (2026)',
             'Calypso on Ogygia — Christopher Nolan\'s The Odyssey (2026)',
             'Calypso\'s island of Ogygia — Christopher Nolan\'s The Odyssey (2026)',
             'Calypso on Ogygia — Christopher Nolan\'s The Odyssey (2026)',
