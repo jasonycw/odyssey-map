@@ -291,16 +291,11 @@ introBtn.addEventListener('click', function () {
 });
 
 // Sidebar Toggle
-var sidebarToggle = document.getElementById('sidebar-toggle');
 var infoHeader = document.querySelector('.info-header');
 var appMain = document.querySelector('main');
 var sidebarVisible = true;
 
-sidebarToggle.addEventListener('click', function () {
-    sidebarVisible = !sidebarVisible;
-    appMain.classList.toggle('sidebar-collapsed', !sidebarVisible);
-    sidebarToggle.innerText = sidebarVisible ? '✕' : '☰';
-});
+// Desktop: clicking the info-header header does nothing (sidebar always visible on desktop)
 
 // Mobile: tapping the collapsed sidebar header expands it
 infoHeader.addEventListener('click', function (e) {
@@ -308,7 +303,6 @@ infoHeader.addEventListener('click', function (e) {
     if (window.innerWidth <= 768 && !sidebarVisible) {
         sidebarVisible = true;
         appMain.classList.remove('sidebar-collapsed');
-        sidebarToggle.innerText = '✕';
     }
 });
 
@@ -324,10 +318,33 @@ sidebarEl.addEventListener('touchmove', function (e) {
         if (dy > 30) {
             sidebarVisible = true;
             appMain.classList.remove('sidebar-collapsed');
-            sidebarToggle.innerText = '✕';
         }
     }
 }, { passive: true });
+
+// Mobile: move controls from sidebar header to timeline
+(function() {
+    var controlsEl = document.getElementById('controls');
+    var timelineControls = document.getElementById('timeline-controls');
+    var origParent = controlsEl ? controlsEl.parentNode : null;
+    function moveControls() {
+        if (!controlsEl || !timelineControls) return;
+        if (window.innerWidth <= 768) {
+            // Move to timeline
+            if (controlsEl.parentNode !== timelineControls) {
+                timelineControls.appendChild(controlsEl);
+            }
+        } else {
+            // Move back to sidebar header (before the placeholder)
+            if (controlsEl.parentNode === timelineControls) {
+                var infoHeaderEl = document.querySelector('.info-header');
+                if (infoHeaderEl) infoHeaderEl.appendChild(controlsEl);
+            }
+        }
+    }
+    moveControls();
+    window.addEventListener('resize', moveControls);
+})();
 
 // Still Carousel
 function showStill() {
@@ -348,79 +365,68 @@ stillNext.addEventListener('click', function () {
     showStill();
 });
 
-// Touch swipe for carousel — smooth finger-following with snap
+// Touch swipe for carousel — simple translate with slide-out/in
 (function() {
-    var wrap = document.querySelector('.still-image-wrap');
     var img = document.getElementById('still-img');
-    var startX = 0, diffX = 0, isDragging = false;
+    var wrap = document.querySelector('.still-image-wrap');
+    var startX = 0, currentX = 0, dragging = false;
+    var threshold = 50;
 
-    function resetSlide(animate) {
-        img.style.transition = animate ? 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none';
-        img.style.transform = 'translateX(0)';
-        diffX = 0;
-    }
-
-    function slideTo(direction) {
+    function go(direction) {
         // direction: -1 = next (left), 1 = prev (right)
-        var outX = direction === -1 ? '-30%' : '30%';
-        var inX = direction === -1 ? '30%' : '-30%';
-
-        img.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
-        img.style.transform = 'translateX(' + outX + ')';
-        img.style.opacity = '0';
-
-        setTimeout(function () {
-            if (direction === -1 && stillIndex < stillImages.length - 1) {
-                stillIndex++;
-            } else if (direction === 1 && stillIndex > 0) {
-                stillIndex--;
-            } else {
-                resetSlide(true);
-                img.style.opacity = '1';
-                return;
-            }
-            showStill();
-            img.style.transition = 'none';
-            img.style.transform = 'translateX(' + inX + ')';
-            img.style.opacity = '0';
-            // Force reflow
-            void img.offsetWidth;
-            img.style.transition = 'transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.25s ease';
+        var outDir = direction === -1 ? '-' : '';
+        var inDir = direction === -1 ? '' : '-';
+        var newIdx = direction === -1 ? stillIndex + 1 : stillIndex - 1;
+        if (newIdx < 0 || newIdx >= stillImages.length) {
+            img.style.transition = 'transform 0.25s ease';
             img.style.transform = 'translateX(0)';
-            img.style.opacity = '1';
-            setTimeout(function () {
-                img.style.transition = '';
-                img.style.opacity = '';
-            }, 300);
-        }, 200);
+            return;
+        }
+        // Slide current out
+        img.style.transition = 'transform 0.2s ease';
+        img.style.transform = 'translateX(' + outDir + '100%)';
+        setTimeout(function() {
+            stillIndex = newIdx;
+            showStill();
+            // Position new image off-screen opposite side
+            img.style.transition = 'none';
+            img.style.transform = 'translateX(' + inDir + '100%)';
+            void img.offsetWidth;
+            img.style.transition = 'transform 0.25s ease';
+            img.style.transform = 'translateX(0)';
+        }, 220);
     }
 
     if (wrap) {
-        wrap.addEventListener('touchstart', function (e) {
+        wrap.addEventListener('touchstart', function(e) {
             if (stillImages.length <= 1) return;
             startX = e.touches[0].clientX;
-            isDragging = true;
+            currentX = startX;
+            dragging = true;
             img.style.transition = 'none';
-            diffX = 0;
         }, { passive: true });
 
-        wrap.addEventListener('touchmove', function (e) {
-            if (!isDragging || stillImages.length <= 1) return;
-            diffX = e.touches[0].clientX - startX;
-            img.style.transform = 'translateX(' + diffX + 'px)';
+        wrap.addEventListener('touchmove', function(e) {
+            if (!dragging || stillImages.length <= 1) return;
+            currentX = e.touches[0].clientX;
+            var dx = currentX - startX;
+            img.style.transform = 'translateX(' + dx + 'px)';
         }, { passive: true });
 
-        wrap.addEventListener('touchend', function () {
-            if (!isDragging || stillImages.length <= 1) return;
-            isDragging = false;
-            if (diffX < -50) {
-                slideTo(-1);
-            } else if (diffX > 50) {
-                slideTo(1);
+        wrap.addEventListener('touchend', function() {
+            if (!dragging || stillImages.length <= 1) return;
+            dragging = false;
+            var dx = currentX - startX;
+            if (dx < -threshold) {
+                go(-1);
+            } else if (dx > threshold) {
+                go(1);
             } else {
-                resetSlide(true);
+                img.style.transition = 'transform 0.2s ease';
+                img.style.transform = 'translateX(0)';
             }
-            diffX = 0;
+            startX = 0;
+            currentX = 0;
         }, { passive: true });
     }
 })();

@@ -9,7 +9,7 @@
     --path-glow: #cc0809;
     --sidebar-width: 400px;
     --header-height: 80px;
-    --timeline-height: 100px;
+    --timeline-height: 70px;
 }
 
 * {
@@ -95,30 +95,70 @@ main {
 
 .sidebar-toggle {
     display: none;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1002;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(13, 13, 13, 0.85);
-    color: var(--text-primary);
-    cursor: pointer;
-    font-size: 1rem;
-    backdrop-filter: blur(4px);
-    align-items: center;
-    justify-content: center;
 }
 
 .info-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
     padding-bottom: 15px;
 }
 .info-header-text {
     flex: 1;
     min-width: 0;
+}
+
+/* Controls in sidebar header (desktop) */
+#controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    margin-left: auto;
+    align-self: center;
+}
+
+.control-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    line-height: 1;
+    padding: 0;
+}
+
+.control-btn:hover {
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+    color: white;
+}
+
+.control-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+
+#autoplay-btn.playing {
+    background: var(--terracotta);
+    color: white;
+    border-color: var(--terracotta);
+    animation: pulse-btn 2s infinite;
+}
+
+@keyframes pulse-btn {
+    0% { box-shadow: 0 0 0 0 rgba(47, 94, 141, 0.5); }
+    70% { box-shadow: 0 0 0 12px rgba(47, 94, 141, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(47, 94, 141, 0); }
 }
 
 .stop-icon {
@@ -268,6 +308,7 @@ main {
     display: flex;
     align-items: center;
     min-height: 0;
+    padding-left: 12px;
 }
 
 #timeline-scroll {
@@ -275,10 +316,10 @@ main {
     display: flex;
     align-items: center;
     overflow-x: auto;
-    padding: 0 12px;
-    gap: 10px;
+    gap: 8px;
     scrollbar-width: thin;
     scrollbar-color: rgba(255,255,255,0.15) transparent;
+    padding: 4px 0;
 }
 
 #timeline-scroll::-webkit-scrollbar {
@@ -294,13 +335,13 @@ main {
 
 .timeline-item {
     flex: 0 0 auto;
-    padding: 6px 14px;
+    padding: 5px 12px;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: 20px;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-secondary);
     transition: all 0.25s ease;
     white-space: nowrap;
@@ -320,68 +361,19 @@ main {
     font-weight: 600;
 }
 
-/* Controls (in timeline) */
-#controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-    padding: 0 12px;
-    border-left: 1px solid rgba(255,255,255,0.08);
-}
-
-.control-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(13, 13, 13, 0.85);
-    color: var(--text-primary);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-    backdrop-filter: blur(4px);
-    flex-shrink: 0;
-    line-height: 1;
-    padding: 0;
-}
-
-.control-btn:hover {
-    background: var(--terracotta);
-    border-color: var(--terracotta);
-    color: white;
-}
-
-.control-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
-#autoplay-btn.playing {
-    background: var(--terracotta);
-    color: white;
-    border-color: var(--terracotta);
-    animation: pulse-btn 2s infinite;
-}
-
-@keyframes pulse-btn {
-    0% { box-shadow: 0 0 0 0 rgba(47, 94, 141, 0.5); }
-    70% { box-shadow: 0 0 0 12px rgba(47, 94, 141, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(47, 94, 141, 0); }
-}
-
 #progress-text {
     position: absolute;
-    top: -28px;
-    right: 20px;
+    top: -26px;
+    right: 16px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.4);
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.35);
     font-weight: 500;
     letter-spacing: 0.3px;
+}
+
+.mobile-only {
+    display: none;
 }
 
 /* Custom Marker Styles — Pin-shaped with clear anchor point */
@@ -577,7 +569,8 @@ footer {
         font-size: 1.2rem;
         margin-bottom: 2px;
     }
-    .sidebar-toggle {
+    /* Hide controls in sidebar header on mobile — moved to timeline via JS */
+    #sidebar #controls {
         display: none !important;
     }
     .sidebar-collapsed #sidebar {
@@ -622,29 +615,32 @@ footer {
     #timeline-container { height: 90px; }
     #timeline-controls-row {
         flex-direction: column;
-        padding: 4px 0;
+        padding: 0;
     }
     #timeline-scroll {
         flex: 1;
         min-height: 0;
         gap: 6px;
-        padding: 0 8px;
+        padding: 4px 8px;
     }
     .timeline-item {
         font-size: 0.6rem;
         padding: 4px 10px;
     }
-    #controls {
-        border-left: none;
-        padding: 2px 0;
-        gap: 16px;
+    .mobile-only {
+        display: flex;
+        align-items: center;
         justify-content: center;
+        gap: 18px;
+        padding: 4px 0 2px;
         flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
     }
-    .control-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 0.85rem;
+    .mobile-only .control-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
+        background: rgba(255,255,255,0.04);
     }
     #progress-text { right: 10px; }
     /* Smooth carousel touch */
@@ -673,8 +669,8 @@ footer {
     h1 { font-size: 1rem; }
     .subtitle { font-size: 0.7rem; }
     #timeline-container { height: 80px; }
-    .control-btn { width: 28px; height: 28px; font-size: 0.75rem; }
-    #controls { gap: 12px; }
+    .mobile-only .control-btn { width: 28px; height: 28px; font-size: 0.7rem; }
+    .mobile-only { gap: 14px; }
 }
 
 /* Intro Overlay */

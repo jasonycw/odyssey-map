@@ -63,7 +63,11 @@
                     <div id="sidebar-period"></div>
                     <div id="sidebar-region"></div>
                 </div>
-                <button id="sidebar-toggle" class="sidebar-toggle" type="button" title="Toggle sidebar">☰</button>
+                <div id="controls">
+                    <button id="prev-btn" class="control-btn" type="button" title="Previous" aria-label="Previous stop">❮</button>
+                    <button id="autoplay-btn" class="control-btn" type="button" title="Auto-play" aria-label="Auto-play">▶</button>
+                    <button id="next-btn" class="control-btn" type="button" title="Next" aria-label="Next stop">❯</button>
+                </div>
             </div>
             <div id="sidebar-still-section" class="stop-info-section" style="display:none">
                 <div id="sidebar-still">
@@ -101,11 +105,7 @@
             <div id="timeline-scroll">
                 <!-- Timeline items injected by JS -->
             </div>
-            <div id="controls">
-                <button id="prev-btn" class="control-btn" type="button" title="Previous">❮</button>
-                <button id="autoplay-btn" class="control-btn" type="button" title="Auto-play">▶</button>
-                <button id="next-btn" class="control-btn" type="button" title="Next">❯</button>
-            </div>
+            <div id="timeline-controls" class="mobile-only"></div>
         </div>
     </div>
 

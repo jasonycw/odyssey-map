@@ -114,7 +114,6 @@ const journeyStops = [
             'Cave dimensions': 'Described as large enough for 600 sheep'
         },
         movieImg: [
-            'https://m.media-amazon.com/images/M/MV5BYTY2MTE0MGEtMmE0My00ZWRiLWJlMzMtYzYyNDYyMDMwYzhhXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BMWY3NzdmY2UtNTliZC00MGZiLTk4ZjQtYTBiZDdiOGU1NGI5XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BZTkyNzM2ZjAtNGNjYy00M2Y4LTk1MDMtMTYzOGU2MzY2M2E2XkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BZDFkODQ2NzUtZGZlZi00YjA0LWE5NTktZTI1NTA0NmFkZGFiXkEyXkFqcGc@._V1',
@@ -125,7 +124,6 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BY2M2MjZlMzgtOTQyNi00OWRiLWIzYzktYjI2ZWFjNWZlMGQzXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Odysseus and his men confronting the giant Cyclopes in the misty forest',
             'Odysseus marching through the forest with his soldiers toward the island\'s interior',
             'Odysseus venturing into the darkness of Polyphemus\' cave',
             'A Greek soldier watching warily from inside the Cyclops\' cave',
@@ -195,6 +193,7 @@ const journeyStops = [
             'Death toll': 'Highest single-day loss of the journey'
         },
         movieImg: [
+            'https://m.media-amazon.com/images/M/MV5BYTY2MTE0MGEtMmE0My00ZWRiLWJlMzMtYzYyNDYyMDMwYzhhXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BNGQ4MDU1ZWMtM2JlOS00ZmI5LTllZmEtODVkYmU3ZDNiMzUzXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BMzJlYWFlOWYtNGRiYi00YTk0LTg4ZDAtZTFhZjA0NWEyNjJkXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BMGQ3ZjcxNjYtZmE4ZS00NDM0LWI2MGItYTgzYTM1MjQ5YzQwXkEyXkFqcGc@._V1',
@@ -202,6 +201,7 @@ const journeyStops = [
             'https://m.media-amazon.com/images/M/MV5BNzE5YTNlOWMtMTUxNy00NWUyLTg4YTMtNTJjZDAwY2NiNDUxXkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
+            'Greek warriors confronting the armored Laestrygonian giants in the misty forest',
             'Greek soldiers marching through the misty forest toward the Laestrygonian harbor',
             'Odysseus\'s soldiers charging across the beach into battle with the giants',
             'Greek warriors confronting the armored Laestrygonian giants in the forest',
