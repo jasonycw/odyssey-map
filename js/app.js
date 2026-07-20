@@ -292,14 +292,42 @@ introBtn.addEventListener('click', function () {
 
 // Sidebar Toggle
 var sidebarToggle = document.getElementById('sidebar-toggle');
+var infoHeader = document.querySelector('.info-header');
 var appMain = document.querySelector('main');
 var sidebarVisible = true;
 
 sidebarToggle.addEventListener('click', function () {
     sidebarVisible = !sidebarVisible;
     appMain.classList.toggle('sidebar-collapsed', !sidebarVisible);
-    sidebarToggle.innerText = sidebarVisible ? '☰' : '☷';
+    sidebarToggle.innerText = sidebarVisible ? '✕' : '☰';
 });
+
+// Mobile: tapping the collapsed sidebar header expands it
+infoHeader.addEventListener('click', function (e) {
+    // Only on mobile (sidebar is absolute positioned) and when collapsed
+    if (window.innerWidth <= 768 && !sidebarVisible) {
+        sidebarVisible = true;
+        appMain.classList.remove('sidebar-collapsed');
+        sidebarToggle.innerText = '✕';
+    }
+});
+
+// Mobile: swipe up on collapsed sidebar expands it
+var sidebarEl = document.getElementById('sidebar');
+var sidebarTouchStartY = 0;
+sidebarEl.addEventListener('touchstart', function (e) {
+    sidebarTouchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+sidebarEl.addEventListener('touchmove', function (e) {
+    if (window.innerWidth <= 768 && !sidebarVisible) {
+        var dy = sidebarTouchStartY - e.changedTouches[0].screenY;
+        if (dy > 30) {
+            sidebarVisible = true;
+            appMain.classList.remove('sidebar-collapsed');
+            sidebarToggle.innerText = '✕';
+        }
+    }
+}, { passive: true });
 
 // Still Carousel
 function showStill() {
@@ -319,6 +347,27 @@ stillNext.addEventListener('click', function () {
     stillIndex = (stillIndex + 1) % stillImages.length;
     showStill();
 });
+
+// Touch swipe for carousel
+var touchStartX = 0;
+var touchEndX = 0;
+stillImg.addEventListener('touchstart', function (e) {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+stillImg.addEventListener('touchend', function (e) {
+    touchEndX = e.changedTouches[0].screenX;
+    var diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+        if (diff > 0) {
+            // Swipe left → next
+            stillIndex = (stillIndex + 1) % stillImages.length;
+        } else {
+            // Swipe right → prev
+            stillIndex = (stillIndex - 1 + stillImages.length) % stillImages.length;
+        }
+        showStill();
+    }
+}, { passive: true });
 
 // Event Listeners
 prevBtn.addEventListener('click', prevStop);
