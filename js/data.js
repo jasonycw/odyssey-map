@@ -248,13 +248,11 @@ const journeyStops = [
             'Dead encountered': 'Elpenor, Tiresias, Anticleia, Achilles, Agamemnon, Ajax, Minos, Orion, Tantalus, Sisyphus, Heracles'
         },
         movieImg: [
-            'https://dx35vtwkllhj9.cloudfront.net/universalstudios/the-odyssey/images/gallery/image1.jpg',
             'https://m.media-amazon.com/images/M/MV5BMjBlYTBkZGUtOGUwMC00MDI5LWFhZjQtMzhkMzNhNjFjMGIxXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BYzFjZmZjYzEtYWFkZS00OGVkLWEwMTAtM2FlMWZhNWRkZjkwXkEyXkFqcGc@._V1',
             'https://m.media-amazon.com/images/M/MV5BYjVlNDQxNTUtZDExOS00NzY5LWEzOTktZGJiNDcyNTIxYjg4XkEyXkFqcGc@._V1'
         ],
         movieImgCaption: [
-            'Matt Damon as Odysseus in the Underworld — Christopher Nolan\'s The Odyssey (2026)',
             'Odysseus\'s boat sailing toward the Underworld — IMDb still',
             'Odysseus preparing to enter the Underworld — IMDb still',
             'The Underworld — back of the king — IMDb still'
