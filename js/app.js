@@ -11,9 +11,16 @@ let stillImages = [];
 let stillCaptions = [];
 
 // Initialize Map
+var mapBounds = L.latLngBounds(
+    [30, 0],   // southwest — North Africa, Atlantic
+    [46, 32]   // northeast — Central Europe, Turkey
+);
 const map = L.map('map', {
     zoomControl: false,
-    attributionControl: false
+    attributionControl: false,
+    minZoom: 4,
+    maxBounds: mapBounds,
+    maxBoundsViscosity: 1.0
 }).setView([38.0, 18.0], 5);
 
 // Dark Tiles
@@ -321,6 +328,29 @@ sidebarEl.addEventListener('touchmove', function (e) {
         }
     }
 }, { passive: true });
+
+// Reposition controls: sidebar on mobile, timeline on desktop
+(function() {
+    var ctrls = document.getElementById('sidebar-controls');
+    var tlSpot = document.getElementById('timeline-controls');
+    var sidebarHeader = document.querySelector('.info-header');
+    function reposition() {
+        if (!ctrls || !tlSpot || !sidebarHeader) return;
+        if (window.innerWidth <= 768) {
+            // Mobile: keep in sidebar (after info-header)
+            if (ctrls.parentNode !== sidebarHeader.parentNode) {
+                sidebarHeader.parentNode.insertBefore(ctrls, sidebarHeader.nextSibling);
+            }
+        } else {
+            // Desktop: move to timeline
+            if (ctrls.parentNode !== tlSpot) {
+                tlSpot.appendChild(ctrls);
+            }
+        }
+    }
+    reposition();
+    window.addEventListener('resize', reposition);
+})();
 
 // Still Carousel
 function showStill() {

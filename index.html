@@ -64,6 +64,12 @@
                     <div id="sidebar-region"></div>
                 </div>
             </div>
+            <!-- Controls live here in HTML; moved to timeline on desktop via JS -->
+            <div id="sidebar-controls">
+                <button id="prev-btn" class="control-btn" type="button" title="Previous" aria-label="Previous stop">❮</button>
+                <button id="autoplay-btn" class="control-btn" type="button" title="Auto-play" aria-label="Auto-play">▶</button>
+                <button id="next-btn" class="control-btn" type="button" title="Next" aria-label="Next stop">❯</button>
+            </div>
             <div id="sidebar-still-section" class="stop-info-section" style="display:none">
                 <div id="sidebar-still">
                     <button id="still-prev" class="still-arrow still-arrow-left" type="button">❮</button>
@@ -100,11 +106,7 @@
             <div id="timeline-scroll">
                 <!-- Timeline items injected by JS -->
             </div>
-            <div id="timeline-controls">
-                <button id="prev-btn" class="control-btn" type="button" title="Previous" aria-label="Previous stop">❮</button>
-                <button id="autoplay-btn" class="control-btn" type="button" title="Auto-play" aria-label="Auto-play">▶</button>
-                <button id="next-btn" class="control-btn" type="button" title="Next" aria-label="Next stop">❯</button>
-            </div>
+            <div id="timeline-controls"><!-- buttons moved here via JS on desktop --></div>
         </div>
     </div>
 
