@@ -600,8 +600,7 @@ footer {
     .subtitle { font-size: 0.8rem; }
     #timeline-container { height: 70px; }
     #timeline-controls-row {
-        flex-direction: column;
-        padding: 0;
+        padding: 0 2px;
     }
     #timeline-scroll {
         flex: 1;
