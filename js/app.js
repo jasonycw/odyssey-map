@@ -138,7 +138,8 @@ function animatePath(latlngs) {
                 var p1 = latlngs[j];
                 var p2 = latlngs[j + 1];
                 var ang = bearing(p1, p2);
-                var arrow = createArrowMarker(p2, ang);
+                // CSS rotate(0deg) = right (east), nav bearing 0° = north → subtract 90
+                var arrow = createArrowMarker(p2, ang - 90);
                 arrow.addTo(map);
                 arrowMarkers.push(arrow);
             }
@@ -169,7 +170,7 @@ function goToStop(index) {
     sidebarDetail.innerText = stop.detail;
 
     // Update Movie Still
-    if (stop.movieImg) {
+    if (stop.movieImg && stop.movieImg.length > 0) {
         stillImages = Array.isArray(stop.movieImg) ? stop.movieImg : [stop.movieImg];
         stillCaptions = Array.isArray(stop.movieImgCaption) ? stop.movieImgCaption : [stop.movieImgCaption || ''];
         stillIndex = 0;
