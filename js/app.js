@@ -348,26 +348,82 @@ stillNext.addEventListener('click', function () {
     showStill();
 });
 
-// Touch swipe for carousel
-var touchStartX = 0;
-var touchEndX = 0;
-stillImg.addEventListener('touchstart', function (e) {
-    touchStartX = e.changedTouches[0].screenX;
-}, { passive: true });
-stillImg.addEventListener('touchend', function (e) {
-    touchEndX = e.changedTouches[0].screenX;
-    var diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 40) {
-        if (diff > 0) {
-            // Swipe left → next
-            stillIndex = (stillIndex + 1) % stillImages.length;
-        } else {
-            // Swipe right → prev
-            stillIndex = (stillIndex - 1 + stillImages.length) % stillImages.length;
-        }
-        showStill();
+// Touch swipe for carousel — smooth finger-following with snap
+(function() {
+    var wrap = document.querySelector('.still-image-wrap');
+    var img = document.getElementById('still-img');
+    var startX = 0, diffX = 0, isDragging = false;
+
+    function resetSlide(animate) {
+        img.style.transition = animate ? 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none';
+        img.style.transform = 'translateX(0)';
+        diffX = 0;
     }
-}, { passive: true });
+
+    function slideTo(direction) {
+        // direction: -1 = next (left), 1 = prev (right)
+        var outX = direction === -1 ? '-30%' : '30%';
+        var inX = direction === -1 ? '30%' : '-30%';
+
+        img.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
+        img.style.transform = 'translateX(' + outX + ')';
+        img.style.opacity = '0';
+
+        setTimeout(function () {
+            if (direction === -1 && stillIndex < stillImages.length - 1) {
+                stillIndex++;
+            } else if (direction === 1 && stillIndex > 0) {
+                stillIndex--;
+            } else {
+                resetSlide(true);
+                img.style.opacity = '1';
+                return;
+            }
+            showStill();
+            img.style.transition = 'none';
+            img.style.transform = 'translateX(' + inX + ')';
+            img.style.opacity = '0';
+            // Force reflow
+            void img.offsetWidth;
+            img.style.transition = 'transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.25s ease';
+            img.style.transform = 'translateX(0)';
+            img.style.opacity = '1';
+            setTimeout(function () {
+                img.style.transition = '';
+                img.style.opacity = '';
+            }, 300);
+        }, 200);
+    }
+
+    if (wrap) {
+        wrap.addEventListener('touchstart', function (e) {
+            if (stillImages.length <= 1) return;
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            img.style.transition = 'none';
+            diffX = 0;
+        }, { passive: true });
+
+        wrap.addEventListener('touchmove', function (e) {
+            if (!isDragging || stillImages.length <= 1) return;
+            diffX = e.touches[0].clientX - startX;
+            img.style.transform = 'translateX(' + diffX + 'px)';
+        }, { passive: true });
+
+        wrap.addEventListener('touchend', function () {
+            if (!isDragging || stillImages.length <= 1) return;
+            isDragging = false;
+            if (diffX < -50) {
+                slideTo(-1);
+            } else if (diffX > 50) {
+                slideTo(1);
+            } else {
+                resetSlide(true);
+            }
+            diffX = 0;
+        }, { passive: true });
+    }
+})();
 
 // Event Listeners
 prevBtn.addEventListener('click', prevStop);

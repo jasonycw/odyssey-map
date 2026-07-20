@@ -253,6 +253,7 @@ main {
     background: rgba(255,255,255,0.06);
     width: 100%;
     position: relative;
+    flex-shrink: 0;
 }
 
 #progress-fill {
@@ -262,13 +263,20 @@ main {
     transition: width 0.5s ease;
 }
 
+#timeline-controls-row {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-height: 0;
+}
+
 #timeline-scroll {
     flex: 1;
     display: flex;
     align-items: center;
     overflow-x: auto;
-    padding: 0 20px;
-    gap: 12px;
+    padding: 0 12px;
+    gap: 10px;
     scrollbar-width: thin;
     scrollbar-color: rgba(255,255,255,0.15) transparent;
 }
@@ -312,20 +320,19 @@ main {
     font-weight: 600;
 }
 
-/* Controls */
+/* Controls (in timeline) */
 #controls {
-    position: absolute;
-    bottom: 120px;
-    right: 20px;
-    z-index: 1001;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 0 12px;
+    border-left: 1px solid rgba(255,255,255,0.08);
 }
 
 .control-btn {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     border: 1px solid rgba(255,255,255,0.1);
     background: rgba(13, 13, 13, 0.85);
@@ -334,9 +341,12 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     transition: all 0.2s ease;
     backdrop-filter: blur(4px);
+    flex-shrink: 0;
+    line-height: 1;
+    padding: 0;
 }
 
 .control-btn:hover {
@@ -568,13 +578,7 @@ footer {
         margin-bottom: 2px;
     }
     .sidebar-toggle {
-        display: flex;
-        position: relative;
-        top: auto;
-        left: auto;
-        width: 36px;
-        height: 36px;
-        flex-shrink: 0;
+        display: none !important;
     }
     .sidebar-collapsed #sidebar {
         transform: translateY(calc(100% - 60px));
@@ -615,18 +619,45 @@ footer {
     }
     h1 { font-size: 1.2rem; }
     .subtitle { font-size: 0.8rem; }
-    #timeline-container { height: 80px; }
-    #timeline-scroll { gap: 8px; padding: 0 10px; }
-    .timeline-item { font-size: 0.65rem; padding: 4px 10px; }
-    #controls {
-        bottom: calc(40% + 60px);
-        right: 50%;
-        transform: translateX(50%);
-        flex-direction: row;
-        gap: 20px;
+    #timeline-container { height: 90px; }
+    #timeline-controls-row {
+        flex-direction: column;
+        padding: 4px 0;
     }
-    .control-btn { width: 44px; height: 44px; font-size: 1rem; }
+    #timeline-scroll {
+        flex: 1;
+        min-height: 0;
+        gap: 6px;
+        padding: 0 8px;
+    }
+    .timeline-item {
+        font-size: 0.6rem;
+        padding: 4px 10px;
+    }
+    #controls {
+        border-left: none;
+        padding: 2px 0;
+        gap: 16px;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .control-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
     #progress-text { right: 10px; }
+    /* Smooth carousel touch */
+    .still-image-wrap {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+    #still-img {
+        will-change: transform;
+        user-select: none;
+        -webkit-user-select: none;
+    }
 }
 
 @media (max-width: 480px) {
@@ -637,12 +668,13 @@ footer {
     .sidebar-collapsed #sidebar .stop-icon { font-size: 1.3rem; }
     .stop-name { font-size: 1rem; }
     .sidebar-collapsed #sidebar .stop-name { font-size: 0.85rem; }
-    .timeline-item { font-size: 0.6rem; padding: 3px 8px; }
+    .timeline-item { font-size: 0.55rem; padding: 3px 8px; }
     header { height: 50px; }
     h1 { font-size: 1rem; }
     .subtitle { font-size: 0.7rem; }
-    #controls { bottom: calc(45% + 50px); gap: 14px; }
-    .control-btn { width: 38px; height: 38px; font-size: 0.85rem; }
+    #timeline-container { height: 80px; }
+    .control-btn { width: 28px; height: 28px; font-size: 0.75rem; }
+    #controls { gap: 12px; }
 }
 
 /* Intro Overlay */
