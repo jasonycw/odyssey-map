@@ -528,8 +528,7 @@ footer {
     }
     #sidebar {
         width: 100%;
-        height: auto;
-        max-height: 50vh;
+        flex: 1;
         position: relative;
         overflow-y: auto;
         border-left: none;
@@ -537,11 +536,11 @@ footer {
         border-top: 1px solid var(--accent-gold);
         padding: 20px;
         z-index: 1001;
-        transition: max-height 0.3s ease;
-        flex-shrink: 0;
     }
     #map {
-        min-height: 0;
+        height: 50vh;
+        min-height: 50vh;
+        flex: 0 0 auto;
     }
     .info-header {
         display: flex;
@@ -563,7 +562,7 @@ footer {
         margin-bottom: 2px;
     }
     .sidebar-collapsed #sidebar {
-        max-height: 60px;
+        flex: 0 0 60px;
         overflow: hidden;
         padding: 0;
     }

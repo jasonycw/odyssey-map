@@ -10,11 +10,12 @@ let stillImages = [];
 let stillCaptions = [];
 
 // Initialize Map
+var mapBounds = L.latLngBounds([20, -10], [55, 40]);
 const map = L.map('map', {
     zoomControl: false,
     attributionControl: false,
     minZoom: 4,
-    worldCopyJump: true
+    maxBounds: mapBounds
 }).setView([38.0, 18.0], 5);
 
 // Dark Tiles
@@ -154,8 +155,9 @@ function goToStop(index) {
     currentIndex = index;
     var stop = journeyStops[index];
 
-    // Update Map
-    map.flyTo(stop.coords, 6, {
+    // Update Map — zoom level depends on screen width (closer on desktop, wider on mobile)
+    var zoomLevel = window.innerWidth <= 768 ? 5 : 6;
+    map.flyTo(stop.coords, zoomLevel, {
         animate: true,
         duration: 1.5
     });
